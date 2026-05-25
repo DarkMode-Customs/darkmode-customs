@@ -170,33 +170,6 @@ h3 {
   color: #64ffda;
 }
 
-.hero-stats {
-  margin-top: 46px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  max-width: 760px;
-}
-
-.hero-stats div {
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.065);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.hero-stats span {
-  display: block;
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: #ffffff;
-}
-
-.hero-stats p {
-  color: #94a3b8;
-  font-size: 0.9rem;
-}
-
 .section {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
@@ -234,18 +207,18 @@ details,
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
 }
 
+.card,
+.price-card,
+.theme-card {
+  transition: 0.2s ease;
+}
+
 .card:hover,
 .price-card:hover,
 .theme-card:hover {
   transform: translateY(-3px);
   border-color: rgba(100, 255, 218, 0.32);
   box-shadow: 0 0 38px rgba(100, 255, 218, 0.1);
-}
-
-.card,
-.price-card,
-.theme-card {
-  transition: 0.2s ease;
 }
 
 .card p,
@@ -416,7 +389,6 @@ details p {
   text-align: center;
 }
 
-.contact .wide-text,
 .contact p {
   margin-left: auto;
   margin-right: auto;
@@ -481,7 +453,6 @@ footer a {
     letter-spacing: -1.6px;
   }
 
-  .hero-stats,
   .cards,
   .pricing-grid,
   .theme-grid,
