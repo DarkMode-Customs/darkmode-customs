@@ -1,158 +1,100 @@
-    padding: 8px 4px 12px;
-  }
-
-  .nav-links.active + .nav-cta,
-  .nav-wrap > .nav-cta.mobile-visible {
-    display: inline-flex;
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-
-  .hero {
-    padding-top: 150px;
-  }
-
-  .hero-metrics,
-  .studio-panels,
-  .services-grid,
-  .pricing-grid,
-  .process-grid,
-  .faq-grid,
-  .stage-sidebar {
-    grid-template-columns: 1fr;
-  }
-
-  .command-stage {
-    min-height: auto;
-    padding: 24px;
-  }
-
-  .device-scene {
-    min-height: auto;
-    padding-top: 52px;
-  }
-
-  .monitor-shell,
-  .laptop-shell {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    width: 100%;
-  }
-
-  .laptop-shell {
-    margin-top: 24px;
-  }
-
-  .stage-chip-b {
-    display: none;
-  }
-
-  .showcase-screen {
-    min-height: 420px;
-  }
+:root {
+  --bg-black: #08101a;
+  --bg-deep: #112038;
+  --bg-panel: rgba(17, 26, 44, 0.74);
+  --bg-panel-strong: rgba(22, 32, 54, 0.9);
+  --bg-soft: rgba(255, 255, 255, 0.07);
+  --text: #f7fbff;
+  --text-soft: #ebf2ff;
+  --muted: #b1bdd7;
+  --line: rgba(196, 226, 255, 0.16);
+  --line-strong: rgba(220, 236, 255, 0.26);
+  --blue: #9fe7ff;
+  --blue-strong: #5d89ff;
+  --plum: #9a73ff;
+  --chrome: #ffffff;
+  --gold: #ffe7ac;
+  --shadow-xl: 0 42px 120px rgba(3, 8, 18, 0.38);
+  --shadow-lg: 0 26px 76px rgba(6, 12, 24, 0.3);
+  --radius-xl: 34px;
+  --radius-lg: 26px;
+  --radius-md: 22px;
+  --radius-sm: 16px;
+  --container: 1320px;
 }
 
-@media (max-width: 680px) {
-  .container {
-    width: min(var(--container), calc(100% - 24px));
-  }
-
-  .section {
-    padding: 82px 0;
-  }
-
-  .hero {
-    padding: 136px 0 92px;
-  }
-
-  .nav-wrap {
-    padding: 12px 14px;
-  }
-
-  .mobile-toggle {
-    width: 46px;
-    height: 46px;
-  }
-
-  .logo-text strong {
-    font-size: 0.86rem;
-    letter-spacing: 0.08em;
-  }
-
-  .logo-text small {
-    display: none;
-  }
-
-  h1 {
-    font-size: clamp(2.7rem, 11.5vw, 4rem);
-  }
-
-  .hero-flourish {
-    font-size: clamp(1.55rem, 6.8vw, 2.2rem);
-  }
-
-  .hero-actions,
-  .cta-actions {
-    flex-direction: column;
-  }
-
-  .button,
-  .nav-wrap > .nav-cta.mobile-visible {
-    width: 100%;
-  }
-
-  .server-fallback {
-    grid-template-columns: 1fr;
-    padding: 18px;
-  }
-
-  .server-sidebar {
-    display: none;
-  }
-
-  .ui-blocks {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .metric-card,
-  .studio-panel,
-  .service-card,
-  .pricing-card,
-  .process-card,
-  .faq-card,
-  .founder-quote,
-  .cta-panel {
-    padding: 22px;
-  }
-
-  .showcase-frame {
-    padding: 12px;
-  }
-
-  .showcase-screen {
-    min-height: 300px;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
+html {
+  scroll-behavior: smooth;
 }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg-black);
+  color: var(--text);
+  font-family: "Sora", sans-serif;
+  overflow-x: hidden;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+main,
+section,
+footer {
+  position: relative;
+}
+
+section[id] {
+  scroll-margin-top: 110px;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.06), transparent 18%),
+    radial-gradient(circle at 78% 22%, rgba(159, 231, 255, 0.1), transparent 24%),
+    radial-gradient(circle at 50% 58%, rgba(255, 231, 172, 0.06), transparent 28%);
+  mix-blend-mode: screen;
+}
+
+.page-progress {
+  position: fixed;
