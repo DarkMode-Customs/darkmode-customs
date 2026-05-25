@@ -11,11 +11,12 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(0, 255, 200, 0.18), transparent 30%),
-    radial-gradient(circle at top right, rgba(126, 87, 255, 0.18), transparent 35%),
-    #05070d;
-  color: #f4f7fb;
+    radial-gradient(circle at top left, rgba(101, 68, 255, 0.26), transparent 32%),
+    radial-gradient(circle at top right, rgba(0, 255, 221, 0.16), transparent 35%),
+    linear-gradient(180deg, #05070d 0%, #070914 45%, #04050a 100%);
+  color: #f8fafc;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -24,42 +25,43 @@ a {
 }
 
 .hero {
-  min-height: 100vh;
-  padding: 24px;
+  min-height: 92vh;
+  padding: 26px 24px 70px;
   background:
-    linear-gradient(rgba(5, 7, 13, 0.68), rgba(5, 7, 13, 0.95)),
-    radial-gradient(circle at 25% 20%, rgba(0, 255, 200, 0.16), transparent 28%),
-    radial-gradient(circle at 80% 10%, rgba(148, 86, 255, 0.16), transparent 30%);
+    linear-gradient(rgba(5, 7, 13, 0.6), rgba(5, 7, 13, 0.96)),
+    linear-gradient(90deg, rgba(95, 55, 255, 0.18), rgba(0, 255, 221, 0.08)),
+    #05070d;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbar {
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 18px 0;
+  padding: 6px 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  font-weight: 900;
   color: #ffffff;
+  letter-spacing: 0.4px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .nav-links a {
   color: #cbd5e1;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 700;
   transition: 0.2s ease;
 }
 
@@ -68,100 +70,108 @@ a {
 }
 
 .nav-cta {
-  padding: 10px 16px;
-  border: 1px solid rgba(100, 255, 218, 0.35);
+  padding: 9px 15px;
   border-radius: 999px;
-  color: #64ffda !important;
+  color: #02040a !important;
+  background: linear-gradient(135deg, #64ffda, #8b5cf6);
 }
 
 .hero-content {
   width: min(980px, 100%);
-  margin: 120px auto 0;
-  text-align: center;
+  margin: 82px auto 0;
+  text-align: left;
 }
 
 .eyebrow,
 .section-tag {
   color: #64ffda;
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
 
 h1 {
-  font-size: clamp(2.6rem, 7vw, 5.7rem);
-  line-height: 1;
-  letter-spacing: -3px;
-  margin-bottom: 22px;
+  max-width: 860px;
+  font-size: clamp(3rem, 6vw, 5.1rem);
+  line-height: 0.98;
+  letter-spacing: -2.5px;
+  margin-bottom: 24px;
+  text-shadow: 0 0 28px rgba(139, 92, 246, 0.42);
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  line-height: 1.08;
-  letter-spacing: -1.5px;
+  max-width: 780px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -1.3px;
   margin-bottom: 18px;
 }
 
 h3 {
-  font-size: 1.25rem;
-  margin-bottom: 12px;
+  font-size: 1.18rem;
+  margin-bottom: 10px;
 }
 
-.hero-text,
+.hero-text {
+  color: #cbd5e1;
+  font-size: 1.08rem;
+  max-width: 680px;
+  margin-bottom: 0;
+}
+
 .wide-text,
 .contact p {
   color: #cbd5e1;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   max-width: 780px;
-  margin: 0 auto;
 }
 
 .hero-buttons,
 .contact-buttons {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 13px 22px;
+  min-height: 46px;
+  padding: 12px 22px;
   border-radius: 999px;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 900;
   transition: 0.2s ease;
 }
 
 .btn.primary {
-  background: linear-gradient(135deg, #64ffda, #6c63ff);
+  background: linear-gradient(135deg, #64ffda, #7c3aed);
   color: #02040a;
-  box-shadow: 0 0 32px rgba(100, 255, 218, 0.22);
+  box-shadow: 0 0 30px rgba(100, 255, 218, 0.24);
 }
 
 .btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 42px rgba(100, 255, 218, 0.35);
+  box-shadow: 0 0 42px rgba(100, 255, 218, 0.38);
 }
 
 .btn.secondary {
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #f8fafc;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.055);
 }
 
 .btn.secondary:hover {
-  border-color: rgba(100, 255, 218, 0.45);
+  border-color: rgba(100, 255, 218, 0.5);
   color: #64ffda;
 }
 
 .hero-stats {
-  margin: 56px auto 0;
+  margin-top: 46px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
@@ -169,15 +179,15 @@ h3 {
 }
 
 .hero-stats div {
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .hero-stats span {
   display: block;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 900;
   color: #ffffff;
 }
@@ -188,9 +198,9 @@ h3 {
 }
 
 .section {
-  width: min(1180px, calc(100% - 36px));
+  width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 92px 0;
+  padding: 82px 0;
 }
 
 .cards,
@@ -217,11 +227,25 @@ h3 {
 details,
 .step,
 .contact-box {
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
   padding: 24px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+}
+
+.card:hover,
+.price-card:hover,
+.theme-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(100, 255, 218, 0.32);
+  box-shadow: 0 0 38px rgba(100, 255, 218, 0.1);
+}
+
+.card,
+.price-card,
+.theme-card {
+  transition: 0.2s ease;
 }
 
 .card p,
@@ -230,23 +254,25 @@ details,
 .step p,
 details p {
   color: #cbd5e1;
+  font-size: 0.96rem;
 }
 
 .card-icon {
   display: inline-block;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   margin-bottom: 12px;
 }
 
 .dark-panel,
 .protection {
-  width: min(1180px, calc(100% - 36px));
-  padding: 70px;
+  width: min(1180px, calc(100% - 40px));
+  padding: 62px;
   border-radius: 34px;
   background:
-    linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(108, 99, 255, 0.1)),
+    radial-gradient(circle at top left, rgba(100, 255, 218, 0.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 35%),
     rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .feature-grid {
@@ -257,24 +283,26 @@ details p {
 }
 
 .feature-grid div {
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba(2, 4, 10, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 17px;
+  border-radius: 16px;
+  background: rgba(2, 4, 10, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   color: #f8fafc;
-  font-weight: 700;
+  font-size: 0.93rem;
+  font-weight: 800;
 }
 
 .theme-version {
   color: #64ffda !important;
   font-weight: 900;
   letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
 .featured-theme,
 .price-card.featured {
   border-color: rgba(100, 255, 218, 0.48);
-  box-shadow: 0 0 40px rgba(100, 255, 218, 0.14);
+  box-shadow: 0 0 42px rgba(100, 255, 218, 0.15);
 }
 
 .status {
@@ -282,7 +310,7 @@ details p {
   margin-top: 18px;
   padding: 7px 12px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 900;
 }
 
@@ -302,20 +330,20 @@ details p {
 }
 
 .price {
-  font-size: 2.2rem;
+  font-size: 2rem !important;
   font-weight: 900;
   color: #64ffda !important;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .popular {
   display: inline-flex;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   padding: 6px 12px;
   border-radius: 999px;
   background: rgba(100, 255, 218, 0.15);
   color: #64ffda !important;
-  font-size: 0.78rem;
+  font-size: 0.72rem !important;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -328,6 +356,7 @@ details p {
 
 .price-card li {
   color: #e2e8f0;
+  font-size: 0.94rem;
   margin-bottom: 8px;
 }
 
@@ -338,7 +367,7 @@ details p {
 }
 
 .order-section {
-  text-align: center;
+  text-align: left;
 }
 
 .steps {
@@ -346,24 +375,23 @@ details p {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
-  text-align: left;
 }
 
 .step span {
   display: inline-flex;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #64ffda, #6c63ff);
+  background: linear-gradient(135deg, #64ffda, #7c3aed);
   color: #02040a;
   font-weight: 900;
   margin-bottom: 18px;
 }
 
 .center-button {
-  margin-top: 34px;
+  margin-top: 32px;
 }
 
 .faq-grid {
@@ -377,6 +405,7 @@ details {
 summary {
   font-weight: 900;
   color: #ffffff;
+  font-size: 1rem;
 }
 
 details p {
@@ -385,6 +414,12 @@ details p {
 
 .contact {
   text-align: center;
+}
+
+.contact .wide-text,
+.contact p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contact-box {
@@ -398,7 +433,7 @@ details p {
 }
 
 footer {
-  width: min(1180px, calc(100% - 36px));
+  width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
   padding: 34px 0;
   display: flex;
@@ -413,12 +448,7 @@ footer a {
   font-weight: 800;
 }
 
-@media (max-width: 980px) {
-  .navbar {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
+@media (max-width: 1100px) {
   .cards,
   .pricing-grid,
   .theme-grid,
@@ -426,20 +456,12 @@ footer a {
   .feature-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .dark-panel,
-  .protection {
-    padding: 42px 24px;
-  }
 }
 
-@media (max-width: 620px) {
-  .hero {
-    padding: 18px;
-  }
-
-  .hero-content {
-    margin-top: 72px;
+@media (max-width: 760px) {
+  .navbar {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .nav-links {
@@ -450,8 +472,13 @@ footer a {
     font-size: 0.86rem;
   }
 
+  .hero-content {
+    margin-top: 56px;
+  }
+
   h1 {
-    letter-spacing: -1.5px;
+    font-size: clamp(2.75rem, 14vw, 4.2rem);
+    letter-spacing: -1.6px;
   }
 
   .hero-stats,
@@ -464,8 +491,13 @@ footer a {
     grid-template-columns: 1fr;
   }
 
+  .dark-panel,
+  .protection {
+    padding: 42px 24px;
+  }
+
   .section {
-    padding: 72px 0;
+    padding: 70px 0;
   }
 
   footer {
