@@ -13,46 +13,60 @@
 
   <header class="site-header">
     <nav class="navbar">
-      <a href="#" class="logo">DarkMode Customs™</a>
+      <a href="#home" class="logo">DarkMode Customs™</a>
 
       <div class="nav-links">
         <a href="#themes">Themes</a>
+        <a href="#packages">Packages</a>
         <a href="#process">Process</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#order">Order</a>
+        <a href="#discord">Discord</a>
+        <a
+          href="https://discord.gg/YOUR_INVITE_CODE"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-cta"
+        >
+          Join Discord
+        </a>
       </div>
     </nav>
   </header>
 
   <main>
 
-    <section class="hero">
+    <section id="home" class="hero">
       <div class="hero-content">
-        <p class="eyebrow">Premium Discord Visuals • Dark-Mode Design</p>
+        <p class="eyebrow">Premium Discord Visuals • Vencord CSS • Dark-Mode Design</p>
 
         <h1>Custom Discord themes for bold online communities.</h1>
 
         <p class="hero-text">
-          DarkMode Customs™ creates premium Discord visuals, Vencord CSS themes,
-          server branding, webhook graphics, and clean dark-mode layouts built
-          to make your community stand out.
+          DarkMode Customs™ builds premium Discord visuals, custom Vencord CSS themes,
+          server branding, webhook graphics, banners, and clean dark-mode layouts
+          designed to make your community look professional.
         </p>
 
-        <div class="hero-buttons">
+        <div class="hero-actions">
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
             target="_blank"
-            class="btn primary-btn"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
           >
             Start an Order
           </a>
 
-          <a href="#themes" class="btn secondary-btn">
-            View Theme Styles
+          <a
+            href="https://discord.gg/YOUR_INVITE_CODE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            Join the Discord
           </a>
         </div>
 
-        <div class="hero-tags">
+        <div class="hero-points">
           <div>
             <span>01</span>
             <p>Custom Vencord CSS themes</p>
@@ -60,24 +74,25 @@
 
           <div>
             <span>02</span>
-            <p>Premium server branding</p>
+            <p>Server branding and visuals</p>
           </div>
 
           <div>
             <span>03</span>
-            <p>Dark-mode visual systems</p>
+            <p>Clean dark-mode layouts</p>
           </div>
         </div>
       </div>
 
-      <div class="hero-image-area">
-        <div class="image-glow"></div>
+      <div class="hero-preview">
+        <div class="preview-glow"></div>
 
-        <div class="image-card">
+        <div class="preview-frame">
           <img
-            src="assets/laptop-preview.png"
-            alt="DarkMode Customs theme preview on monitor and laptop"
-            class="hero-image"
+            src="./assets/laptop-preview.png"
+            alt="DarkMode Customs Discord theme preview on monitor and laptop"
+            class="preview-image"
+            onerror="this.style.display='none'; this.parentElement.classList.add('image-missing');"
           />
         </div>
       </div>
@@ -88,13 +103,13 @@
         <p class="eyebrow">Theme Styles</p>
         <h2>Clean, aggressive, and built for dark-mode communities.</h2>
         <p>
-          Every design is built around your server’s identity, colors, theme,
-          audience, and overall vibe.
+          Every theme is designed around your server’s identity, colors, audience,
+          and overall vibe.
         </p>
       </div>
 
       <div class="card-grid">
-        <article class="card">
+        <article class="info-card">
           <div class="card-icon">✦</div>
           <h3>Neon Dark Themes</h3>
           <p>
@@ -103,7 +118,7 @@
           </p>
         </article>
 
-        <article class="card">
+        <article class="info-card">
           <div class="card-icon">◆</div>
           <h3>Server Branding</h3>
           <p>
@@ -112,41 +127,109 @@
           </p>
         </article>
 
-        <article class="card">
+        <article class="info-card">
           <div class="card-icon">●</div>
           <h3>Vencord CSS</h3>
           <p>
-            Custom CSS files made for Vencord users who want their Discord to
-            look premium, different, and fully customized.
+            Custom CSS files made for Vencord users who want their Discord to look
+            premium, unique, and fully customized.
           </p>
         </article>
       </div>
     </section>
 
-    <section id="process" class="section process-section">
+    <section id="packages" class="section">
       <div class="section-heading">
-        <p class="eyebrow">Process</p>
-        <h2>From concept to finished Discord look.</h2>
+        <p class="eyebrow">Packages</p>
+        <h2>Pricing that fits your server build.</h2>
         <p>
-          Send your idea, theme direction, logo, colors, and style references.
-          We turn it into a clean custom visual package for your Discord.
+          Start small with a clean theme or go all in with a full visual kit for
+          your entire Discord brand.
         </p>
       </div>
 
-      <div class="step-grid">
-        <article class="step-card">
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3>Basic Theme</h3>
+          <p class="price">$10+</p>
+          <p>
+            Starter dark-mode styling with custom colors, clean accents, and basic
+            Discord polish.
+          </p>
+
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card-link"
+          >
+            Order Basic
+          </a>
+        </article>
+
+        <article class="price-card featured">
+          <div class="badge">Most Popular</div>
+          <h3>Premium Theme</h3>
+          <p class="price">$25+</p>
+          <p>
+            Full custom theme design with gradients, glow effects, cleaner polish,
+            and stronger brand direction.
+          </p>
+
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card-link"
+          >
+            Order Premium
+          </a>
+        </article>
+
+        <article class="price-card">
+          <h3>Full Visual Kit</h3>
+          <p class="price">$50+</p>
+          <p>
+            Theme design, banners, icons, webhook graphics, server visuals,
+            layout concepts, and branding support.
+          </p>
+
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card-link"
+          >
+            Order Full Kit
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Process</p>
+        <h2>From idea to finished Discord look.</h2>
+        <p>
+          Send your theme idea, colors, logo, server style, and references. We turn
+          it into a clean custom visual package for your Discord.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card">
           <span>01</span>
           <h3>Submit Your Idea</h3>
           <p>Tell us the style, colors, and server theme you want.</p>
         </article>
 
-        <article class="step-card">
+        <article class="process-card">
           <span>02</span>
           <h3>Theme Buildout</h3>
           <p>We design the visuals, theme direction, and Discord styling.</p>
         </article>
 
-        <article class="step-card">
+        <article class="process-card">
           <span>03</span>
           <h3>Final Delivery</h3>
           <p>You receive the completed files and setup guidance.</p>
@@ -154,68 +237,65 @@
       </div>
     </section>
 
-    <section id="pricing" class="section">
-      <div class="section-heading">
-        <p class="eyebrow">Packages</p>
-        <h2>Pick the level that fits your server.</h2>
-      </div>
+    <section id="discord" class="discord-section">
+      <div class="discord-box">
+        <p class="eyebrow">DarkMode Customs Discord</p>
 
-      <div class="pricing-grid">
-        <article class="price-card">
-          <h3>Basic Theme</h3>
-          <p class="price">$25+</p>
-          <p>
-            Starter dark-mode theme styling with custom colors, clean accents,
-            and basic Discord polish.
-          </p>
-        </article>
-
-        <article class="price-card featured">
-          <div class="badge">Most Popular</div>
-          <h3>Premium Theme</h3>
-          <p class="price">$50+</p>
-          <p>
-            Full custom theme design with gradients, glow effects, visual polish,
-            and stronger brand direction.
-          </p>
-        </article>
-
-        <article class="price-card">
-          <h3>Full Visual Kit</h3>
-          <p class="price">$100+</p>
-          <p>
-            Theme design, server visuals, banners, icons, webhook graphics,
-            layout concepts, and branding support.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section id="order" class="cta-section">
-      <div class="cta-box">
-        <p class="eyebrow">Ready to Build?</p>
-
-        <h2>Let’s create your custom Discord look.</h2>
+        <h2>Join the community and start your custom build.</h2>
 
         <p>
-          Get a premium dark-mode design built around your community, server
-          style, colors, and brand identity.
+          Join our Discord to ask questions, view updates, request support, check
+          theme drops, and start your custom server design order.
         </p>
 
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
-          target="_blank"
-          class="btn primary-btn"
-        >
-          Start Order Form
-        </a>
+        <div class="discord-actions">
+          <a
+            href="https://discord.gg/YOUR_INVITE_CODE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Join Discord
+          </a>
+
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            Start Order Form
+          </a>
+        </div>
       </div>
     </section>
 
   </main>
 
   <footer class="footer">
-    <p>© 2026 DarkMode Customs™. All rights reserved.</p>
+    <div class="footer-inner">
+      <p>© 2026 DarkMode Customs™. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a
+          href="https://discord.gg/YOUR_INVITE_CODE"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discord
+        </a>
+
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform?usp=header"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Order Form
+        </a>
+
+        <a href="#home">Back to Top</a>
+      </div>
+    </div>
   </footer>
 
 </body>
