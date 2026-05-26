@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadCompanyStatus() {
     try {
-      const response = await fetch(`./status.json?cache=${Date.now()}`, {
+      const response = await fetch(`https://darkmode-customs-status.matthew-wellman.workers.dev/status?cache=${Date.now()}`, {
         cache: "no-store",
       });
 
