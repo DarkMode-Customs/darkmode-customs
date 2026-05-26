@@ -1,7 +1,7 @@
 {
-  "status": "maintenance",
-  "label": "maintenance",
-  "emoji": "🟡",
+  "status": "Online",
+  "label": "Online",
+  "emoji": "🟢",
   "message": "DarkMode Customs™ is online and accepting new custom design requests.",
   "terminal": "Ready for deployment",
   "orders": "Accepting Orders",
