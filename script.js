@@ -82,9 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadCompanyStatus() {
     try {
-      const response = await fetch(`https://darkmode-customs-status.matthew-wellman.workers.dev/status?cache=${Date.now()}`, {
+      const response = await fetch(
+        `https://darkmode-customs-status.matthew-wellman.workers.dev/status?cache=${Date.now()}`, 
+        {
         cache: "no-store",
-      });
+      };
 
       if (!response.ok) throw new Error("Status file not found");
 
