@@ -1,382 +1,331 @@
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("animations-ready");
-
-  const cursorDot = document.getElementById("cursorDot");
-  const scrollProgress = document.getElementById("scrollProgress");
-  const siteHeader = document.getElementById("siteHeader");
-  const menuButton = document.getElementById("menuButton");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const canvas = document.getElementById("cyberCanvas");
-  const ctx = canvas ? canvas.getContext("2d") : null;
-
-  const companyStatusCard = document.getElementById("companyStatusCard");
-  const companyStatusOrb = document.getElementById("companyStatusOrb");
-  const companyStatusLabel = document.getElementById("companyStatusLabel");
-  const companyStatusMessage = document.getElementById("companyStatusMessage");
-  const companyOrdersStatus = document.getElementById("companyOrdersStatus");
-  const companySupportStatus = document.getElementById("companySupportStatus");
-  const companyResponseTime = document.getElementById("companyResponseTime");
-  const companyStatusUpdated = document.getElementById("companyStatusUpdated");
-  const hudStatusLabel = document.getElementById("hudStatusLabel");
-  const hudStatusText = document.getElementById("hudStatusText");
-  const headerStatusPill = document.getElementById("headerStatusPill");
-  const headerStatusText = document.getElementById("headerStatusText");
-
-  const WORKER_STATUS_URL =
-    "https://darkmode-customs-status.matthew-wellman.workers.dev/status";
-
-  const statusSettings = {
-    online: {
-      emoji: "🟢",
-      label: "Online",
-      message: "DarkMode Customs™ is currently online and accepting new orders.",
-      orders: "Accepting Orders",
-      support: "Active",
-      responseTime: "Within 24 hours",
-      hud: "ONLINE",
-      hudText: "Ready for deployment",
-    },
-    maintenance: {
-      emoji: "🟡",
-      label: "Under Maintenance",
-      message:
-        "DarkMode Customs™ is currently under maintenance. Orders and support may be delayed.",
-      orders: "Limited Availability",
-      support: "Delayed",
-      responseTime: "Longer than usual",
-      hud: "MAINTENANCE",
-      hudText: "Maintenance mode active",
-    },
-    offline: {
-      emoji: "🔴",
-      label: "Offline",
-      message:
-        "DarkMode Customs™ is currently offline. New orders are temporarily paused.",
-      orders: "Closed",
-      support: "Unavailable",
-      responseTime: "Unavailable",
-      hud: "OFFLINE",
-      hudText: "Systems temporarily offline",
-    },
-    loading: {
-      emoji: "⚪",
-      label: "Checking",
-      message: "Checking DarkMode Customs™ system status...",
-      orders: "Checking...",
-      support: "Checking...",
-      responseTime: "Checking...",
-      hud: "CHECKING",
-      hudText: "Checking system status",
-    },
-  };
-
-  const isTouchDevice =
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia("(max-width: 680px)").matches;
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let particles = [];
-
-  function applyCompanyStatus(statusData = {}) {
-    const statusKey = statusSettings[statusData.status]
-      ? statusData.status
-      : "online";
-
-    const fallback = statusSettings[statusKey];
-
-    const finalStatus = {
-      ...fallback,
-      ...statusData,
-      status: statusKey,
+export default {
+  async fetch(request, env) {
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Admin-Token",
+      "Access-Control-Max-Age": "86400"
     };
 
-    document.body.dataset.companyStatus = finalStatus.status;
-
-    if (companyStatusCard) {
-      companyStatusCard.dataset.status = finalStatus.status;
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders
+      });
     }
 
-    if (companyStatusOrb) {
-      companyStatusOrb.dataset.status = finalStatus.status;
-    }
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/\/+$/, "") || "/";
 
-    if (headerStatusPill) {
-      headerStatusPill.dataset.status = finalStatus.status;
-    }
-
-    if (companyStatusLabel) {
-      companyStatusLabel.textContent = `${finalStatus.emoji} ${finalStatus.label}`;
-    }
-
-    if (companyStatusMessage) {
-      companyStatusMessage.textContent = finalStatus.message;
-    }
-
-    if (companyOrdersStatus) {
-      companyOrdersStatus.textContent = finalStatus.orders;
-    }
-
-    if (companySupportStatus) {
-      companySupportStatus.textContent = finalStatus.support;
-    }
-
-    if (companyResponseTime) {
-      companyResponseTime.textContent = finalStatus.responseTime;
-    }
-
-    if (companyStatusUpdated) {
-      companyStatusUpdated.textContent = `Last Updated: ${
-        finalStatus.lastUpdated || "Recently"
-      }`;
-    }
-
-    if (hudStatusLabel) {
-      hudStatusLabel.textContent = finalStatus.hud || finalStatus.label.toUpperCase();
-    }
-
-    if (hudStatusText) {
-      hudStatusText.textContent = finalStatus.hudText || finalStatus.message;
-    }
-
-    if (headerStatusText) {
-      headerStatusText.textContent = finalStatus.label;
-    }
-  }
-
-  async function loadCompanyStatus() {
     try {
-      const response = await fetch(`${WORKER_STATUS_URL}?cache=${Date.now()}`, {
-        cache: "no-store",
-      });
+      if (request.method === "GET" && (path === "/" || path === "/status")) {
+        const statusData = await getStatus(env);
 
-      if (!response.ok) {
-        throw new Error("Status endpoint could not be loaded.");
+        return jsonResponse(
+          {
+            ok: true,
+            ...statusData
+          },
+          200,
+          corsHeaders
+        );
       }
 
-      const statusData = await response.json();
-      applyCompanyStatus(statusData);
-    } catch (error) {
-      console.warn("Company status fallback active:", error);
-      applyCompanyStatus({
-        status: "online",
-        label: "Online",
-        message: "DarkMode Customs™ is currently online.",
-        lastUpdated: "Recently",
-      });
-    }
-  }
+      if (
+        request.method === "POST" &&
+        ["/status", "/admin/status", "/admin/update", "/update-status"].includes(path)
+      ) {
+        const body = await safeJson(request);
 
-  loadCompanyStatus();
-  setInterval(loadCompanyStatus, 60000);
-
-  function moveCursor(event) {
-    if (!cursorDot || isTouchDevice) return;
-
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-
-    cursorDot.classList.add("active");
-    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-  }
-
-  function hideCursor() {
-    if (!cursorDot || isTouchDevice) return;
-    cursorDot.classList.remove("active");
-  }
-
-  function showCursor() {
-    if (!cursorDot || isTouchDevice) return;
-    cursorDot.classList.add("active");
-  }
-
-  if (!isTouchDevice && cursorDot) {
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseleave", hideCursor);
-    window.addEventListener("mouseenter", showCursor);
-
-    const hoverTargets = document.querySelectorAll(
-      "a, button, .tilt-card, .service-card, .price-card, .process-card, .founder-card, .final-card, .company-status-card, .showroom-card, .tech-frame, .preview-screen"
-    );
-
-    hoverTargets.forEach((target) => {
-      target.addEventListener("mouseenter", () => {
-        cursorDot.classList.add("hovering");
-      });
-
-      target.addEventListener("mouseleave", () => {
-        cursorDot.classList.remove("hovering");
-      });
-    });
-  }
-
-  function updateScrollProgress() {
-    const scrollTop = window.scrollY;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
-
-    if (scrollProgress) {
-      scrollProgress.style.width = `${progress}%`;
-    }
-
-    if (siteHeader) {
-      if (scrollTop > 30) {
-        siteHeader.classList.add("scrolled");
-      } else {
-        siteHeader.classList.remove("scrolled");
-      }
-    }
-  }
-
-  window.addEventListener("scroll", updateScrollProgress);
-  updateScrollProgress();
-
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
-    });
-
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
-      });
-    });
-  }
-
-  const revealItems = document.querySelectorAll(".reveal");
-
-  if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px",
-      }
-    );
-
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index * 45, 260)}ms`;
-      revealObserver.observe(item);
-    });
-  } else {
-    revealItems.forEach((item) => item.classList.add("visible"));
-  }
-
-  function resizeCanvas() {
-    if (!canvas || !ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
-
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    createParticles();
-  }
-
-  function createParticles() {
-    const count = Math.min(Math.floor(window.innerWidth / 11), 120);
-
-    particles = Array.from({ length: count }, () => {
-      return {
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.36,
-        vy: (Math.random() - 0.5) * 0.36,
-        size: Math.random() * 1.8 + 0.5,
-        alpha: Math.random() * 0.6 + 0.22,
-      };
-    });
-  }
-
-  function drawParticles() {
-    if (!canvas || !ctx) return;
-
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    particles.forEach((particle, index) => {
-      particle.x += particle.vx;
-      particle.y += particle.vy;
-
-      if (particle.x < 0 || particle.x > window.innerWidth) {
-        particle.vx *= -1;
-      }
-
-      if (particle.y < 0 || particle.y > window.innerHeight) {
-        particle.vy *= -1;
-      }
-
-      const mouseDistance = Math.hypot(mouseX - particle.x, mouseY - particle.y);
-
-      if (!isTouchDevice && mouseDistance < 150) {
-        const angle = Math.atan2(particle.y - mouseY, particle.x - mouseX);
-        particle.x += Math.cos(angle) * 0.42;
-        particle.y += Math.sin(angle) * 0.42;
-      }
-
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(89, 247, 255, ${particle.alpha})`;
-      ctx.shadowColor = "rgba(89, 247, 255, 0.9)";
-      ctx.shadowBlur = 12;
-      ctx.fill();
-
-      for (let j = index + 1; j < particles.length; j++) {
-        const other = particles[j];
-        const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
-
-        if (distance < 125) {
-          const opacity = (1 - distance / 125) * 0.18;
-
-          ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(other.x, other.y);
-          ctx.strokeStyle = `rgba(89, 247, 255, ${opacity})`;
-          ctx.lineWidth = 1;
-          ctx.shadowBlur = 0;
-          ctx.stroke();
+        const authResult = await validateAdmin(request, body, env);
+        if (!authResult.ok) {
+          return jsonResponse(
+            {
+              ok: false,
+              error: authResult.error
+            },
+            authResult.status,
+            corsHeaders
+          );
         }
-      }
-    });
 
-    requestAnimationFrame(drawParticles);
+        const normalized = normalizeStatus(body.status || body.key || body.value);
+
+        if (!normalized) {
+          return jsonResponse(
+            {
+              ok: false,
+              error: "Invalid status. Use online, maintenance, or offline."
+            },
+            400,
+            corsHeaders
+          );
+        }
+
+        const payload = {
+          key: normalized.key,
+          emoji: normalized.emoji,
+          label: normalized.label,
+          status: `${normalized.emoji} ${normalized.label}`,
+          message: body.message || defaultMessage(normalized.key),
+          updatedAt: new Date().toISOString(),
+          updatedBy: body.updatedBy || body.admin || "DarkMode Customs™ Admin"
+        };
+
+        await env.STATUS_KV.put("company_status", JSON.stringify(payload));
+
+        await sendDiscordWebhook(env, payload);
+
+        return jsonResponse(
+          {
+            ok: true,
+            saved: true,
+            ...payload
+          },
+          200,
+          corsHeaders
+        );
+      }
+
+      return jsonResponse(
+        {
+          ok: false,
+          error: "Route not found."
+        },
+        404,
+        corsHeaders
+      );
+    } catch (error) {
+      return jsonResponse(
+        {
+          ok: false,
+          error: "Worker error.",
+          details: String(error && error.message ? error.message : error)
+        },
+        500,
+        corsHeaders
+      );
+    }
+  }
+};
+
+async function getStatus(env) {
+  const fallback = {
+    key: "online",
+    emoji: "🟢",
+    label: "Online",
+    status: "🟢 Online",
+    message: "DarkMode Customs™ is online and accepting orders.",
+    updatedAt: null,
+    updatedBy: "System"
+  };
+
+  const saved = await env.STATUS_KV.get("company_status");
+
+  if (!saved) {
+    return fallback;
   }
 
-  resizeCanvas();
-  drawParticles();
+  try {
+    return {
+      ...fallback,
+      ...JSON.parse(saved)
+    };
+  } catch {
+    return fallback;
+  }
+}
 
-  window.addEventListener("resize", resizeCanvas);
+function normalizeStatus(input) {
+  if (!input) return null;
 
-  const tiltCards = document.querySelectorAll(".tilt-card");
+  const value = String(input).trim().toLowerCase();
 
-  tiltCards.forEach((card) => {
-    card.addEventListener("mousemove", (event) => {
-      if (isTouchDevice) return;
+  const map = {
+    online: {
+      key: "online",
+      emoji: "🟢",
+      label: "Online"
+    },
+    "🟢 online": {
+      key: "online",
+      emoji: "🟢",
+      label: "Online"
+    },
+    green: {
+      key: "online",
+      emoji: "🟢",
+      label: "Online"
+    },
+    maintenance: {
+      key: "maintenance",
+      emoji: "🟡",
+      label: "Under Maintenance"
+    },
+    "under maintenance": {
+      key: "maintenance",
+      emoji: "🟡",
+      label: "Under Maintenance"
+    },
+    "🟡 under maintenance": {
+      key: "maintenance",
+      emoji: "🟡",
+      label: "Under Maintenance"
+    },
+    yellow: {
+      key: "maintenance",
+      emoji: "🟡",
+      label: "Under Maintenance"
+    },
+    offline: {
+      key: "offline",
+      emoji: "🔴",
+      label: "Offline"
+    },
+    "🔴 offline": {
+      key: "offline",
+      emoji: "🔴",
+      label: "Offline"
+    },
+    red: {
+      key: "offline",
+      emoji: "🔴",
+      label: "Offline"
+    }
+  };
 
-      const rect = card.getBoundingClientRect();
-      const cardX = event.clientX - rect.left;
-      const cardY = event.clientY - rect.top;
+  return map[value] || null;
+}
 
-      const rotateY = (cardX / rect.width - 0.5) * 10;
-      const rotateX = (cardY / rect.height - 0.5) * -10;
+function defaultMessage(key) {
+  if (key === "online") {
+    return "DarkMode Customs™ is online and accepting orders.";
+  }
 
-      card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
+  if (key === "maintenance") {
+    return "DarkMode Customs™ is currently under maintenance. Some services may be temporarily limited.";
+  }
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
+  if (key === "offline") {
+    return "DarkMode Customs™ is currently offline. Updates will be posted when service returns.";
+  }
+
+  return "DarkMode Customs™ status has been updated.";
+}
+
+async function validateAdmin(request, body, env) {
+  /*
+    Optional security:
+    - Add ADMIN_TOKEN as a Worker secret.
+    - Your admin.html can send it as:
+      header: X-Admin-Token
+      or Authorization: Bearer YOUR_TOKEN
+      or body.adminToken
+
+    If ADMIN_TOKEN is not set, this Worker allows updates.
+  */
+
+  if (!env.ADMIN_TOKEN) {
+    return {
+      ok: true
+    };
+  }
+
+  const headerToken = request.headers.get("X-Admin-Token");
+  const authHeader = request.headers.get("Authorization");
+  const bearerToken = authHeader && authHeader.startsWith("Bearer ")
+    ? authHeader.slice(7)
+    : null;
+
+  const bodyToken = body.adminToken || body.token || body.secret;
+
+  const providedToken = headerToken || bearerToken || bodyToken;
+
+  if (providedToken !== env.ADMIN_TOKEN) {
+    return {
+      ok: false,
+      status: 401,
+      error: "Unauthorized admin request."
+    };
+  }
+
+  return {
+    ok: true
+  };
+}
+
+async function sendDiscordWebhook(env, statusData) {
+  /*
+    Required Worker secret:
+    DISCORD_STATUS_WEBHOOK = your Discord company-status webhook URL
+  */
+
+  if (!env.DISCORD_STATUS_WEBHOOK) {
+    return;
+  }
+
+  const colorMap = {
+    online: 0x31ff9b,
+    maintenance: 0xffd84d,
+    offline: 0xff4d6d
+  };
+
+  const discordPayload = {
+    username: "DarkMode Customs™ Status",
+    avatar_url: "https://raw.githubusercontent.com/github/explore/main/topics/github/github.png",
+    embeds: [
+      {
+        title: "DarkMode Customs™ Company Status Updated",
+        description: `**Current Status:** ${statusData.status}\n\n${statusData.message}`,
+        color: colorMap[statusData.key] || 0x00eaff,
+        fields: [
+          {
+            name: "Website",
+            value: "GitHub Pages",
+            inline: true
+          },
+          {
+            name: "Founder",
+            value: "🪖𝕊𝔾𝕋. ℝℍ𝕀ℕ𝕆™",
+            inline: true
+          },
+          {
+            name: "Updated By",
+            value: statusData.updatedBy || "DarkMode Customs™ Admin",
+            inline: true
+          }
+        ],
+        footer: {
+          text: "DarkMode Customs™ • Company Status System"
+        },
+        timestamp: statusData.updatedAt
+      }
+    ]
+  };
+
+  await fetch(env.DISCORD_STATUS_WEBHOOK, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(discordPayload)
   });
-});
+}
+
+async function safeJson(request) {
+  try {
+    return await request.json();
+  } catch {
+    return {};
+  }
+}
+
+function jsonResponse(data, status = 200, extraHeaders = {}) {
+  return new Response(JSON.stringify(data, null, 2), {
+    status,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      ...extraHeaders
+    }
+  });
+}
