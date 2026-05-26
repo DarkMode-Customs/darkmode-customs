@@ -7,17 +7,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.getElementById("menuButton");
   const mobileMenu = document.getElementById("mobileMenu");
   const canvas = document.getElementById("cyberCanvas");
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas ? canvas.getContext("2d") : null;
 
-  const siteStatusPill = document.getElementById("siteStatusPill");
-  const mobileStatusPill = document.getElementById("mobileStatusPill");
-  const statusLabel = document.getElementById("statusLabel");
-  const mobileStatusLabel = document.getElementById("mobileStatusLabel");
-  const statusPanel = document.getElementById("statusPanel");
-  const statusPanelTitle = document.getElementById("statusPanelTitle");
-  const statusPanelMessage = document.getElementById("statusPanelMessage");
+  const companyStatusCard = document.getElementById("companyStatusCard");
+  const companyStatusOrb = document.getElementById("companyStatusOrb");
+  const companyStatusLabel = document.getElementById("companyStatusLabel");
+  const companyStatusMessage = document.getElementById("companyStatusMessage");
+  const companyOrdersStatus = document.getElementById("companyOrdersStatus");
+  const companySupportStatus = document.getElementById("companySupportStatus");
+  const companyResponseTime = document.getElementById("companyResponseTime");
+  const companyStatusUpdated = document.getElementById("companyStatusUpdated");
+  const hudStatusLabel = document.getElementById("hudStatusLabel");
   const hudStatusText = document.getElementById("hudStatusText");
-  const terminalStatusText = document.getElementById("terminalStatusText");
+  const headerStatusPill = document.getElementById("headerStatusPill");
+  const headerStatusText = document.getElementById("headerStatusText");
+
+  const WORKER_STATUS_URL =
+    "https://darkmode-customs-status.matthew-wellman.workers.dev/status";
+
+  const statusSettings = {
+    online: {
+      emoji: "🟢",
+      label: "Online",
+      message: "DarkMode Customs™ is currently online and accepting new orders.",
+      orders: "Accepting Orders",
+      support: "Active",
+      responseTime: "Within 24 hours",
+      hud: "ONLINE",
+      hudText: "Ready for deployment",
+    },
+    maintenance: {
+      emoji: "🟡",
+      label: "Under Maintenance",
+      message:
+        "DarkMode Customs™ is currently under maintenance. Orders and support may be delayed.",
+      orders: "Limited Availability",
+      support: "Delayed",
+      responseTime: "Longer than usual",
+      hud: "MAINTENANCE",
+      hudText: "Maintenance mode active",
+    },
+    offline: {
+      emoji: "🔴",
+      label: "Offline",
+      message:
+        "DarkMode Customs™ is currently offline. New orders are temporarily paused.",
+      orders: "Closed",
+      support: "Unavailable",
+      responseTime: "Unavailable",
+      hud: "OFFLINE",
+      hudText: "Systems temporarily offline",
+    },
+    loading: {
+      emoji: "⚪",
+      label: "Checking",
+      message: "Checking DarkMode Customs™ system status...",
+      orders: "Checking...",
+      support: "Checking...",
+      responseTime: "Checking...",
+      hud: "CHECKING",
+      hudText: "Checking system status",
+    },
+  };
 
   const isTouchDevice =
     "ontouchstart" in window ||
@@ -28,76 +79,97 @@ document.addEventListener("DOMContentLoaded", () => {
   let mouseY = window.innerHeight / 2;
   let particles = [];
 
-  const STATUS_CONFIG = {
-    online: {
-      className: "status-online",
-      emoji: "🟢",
-      label: "Online",
-      hud: "ONLINE",
-      terminal: "Ready for deployment",
-      message: "DarkMode Customs™ is online and accepting new custom design requests.",
-    },
-    maintenance: {
-      className: "status-maintenance",
-      emoji: "🟡",
-      label: "Under Maintenance",
-      hud: "MAINTENANCE",
-      terminal: "Maintenance in progress",
-      message: "DarkMode Customs™ is currently under maintenance. Orders and support may be delayed.",
-    },
-    offline: {
-      className: "status-offline",
-      emoji: "🔴",
-      label: "Offline",
-      hud: "OFFLINE",
-      terminal: "Operations paused",
-      message: "DarkMode Customs™ is currently offline. New orders and support are temporarily unavailable.",
-    },
-  };
-
   function applyCompanyStatus(statusData = {}) {
-    const key = String(statusData.status || "online").toLowerCase();
-    const config = STATUS_CONFIG[key] || STATUS_CONFIG.online;
-    const label = statusData.label || config.label;
-    const emoji = statusData.emoji || config.emoji;
-    const message = statusData.message || config.message;
-    const classNames = ["status-online", "status-maintenance", "status-offline"];
+    const statusKey = statusSettings[statusData.status]
+      ? statusData.status
+      : "online";
 
-    document.body.classList.remove(...classNames);
-    document.body.classList.add(config.className);
+    const fallback = statusSettings[statusKey];
 
-    [siteStatusPill, mobileStatusPill, statusPanel].forEach((element) => {
-      if (!element) return;
-      element.classList.remove(...classNames);
-      element.classList.add(config.className);
-    });
+    const finalStatus = {
+      ...fallback,
+      ...statusData,
+      status: statusKey,
+    };
 
-    if (statusLabel) statusLabel.textContent = label;
-    if (mobileStatusLabel) mobileStatusLabel.textContent = label;
-    if (statusPanelTitle) statusPanelTitle.textContent = `${emoji} ${label}`;
-    if (statusPanelMessage) statusPanelMessage.textContent = message;
-    if (hudStatusText) hudStatusText.textContent = config.hud;
-    if (terminalStatusText) terminalStatusText.textContent = statusData.terminal || config.terminal;
+    document.body.dataset.companyStatus = finalStatus.status;
+
+    if (companyStatusCard) {
+      companyStatusCard.dataset.status = finalStatus.status;
+    }
+
+    if (companyStatusOrb) {
+      companyStatusOrb.dataset.status = finalStatus.status;
+    }
+
+    if (headerStatusPill) {
+      headerStatusPill.dataset.status = finalStatus.status;
+    }
+
+    if (companyStatusLabel) {
+      companyStatusLabel.textContent = `${finalStatus.emoji} ${finalStatus.label}`;
+    }
+
+    if (companyStatusMessage) {
+      companyStatusMessage.textContent = finalStatus.message;
+    }
+
+    if (companyOrdersStatus) {
+      companyOrdersStatus.textContent = finalStatus.orders;
+    }
+
+    if (companySupportStatus) {
+      companySupportStatus.textContent = finalStatus.support;
+    }
+
+    if (companyResponseTime) {
+      companyResponseTime.textContent = finalStatus.responseTime;
+    }
+
+    if (companyStatusUpdated) {
+      companyStatusUpdated.textContent = `Last Updated: ${
+        finalStatus.lastUpdated || "Recently"
+      }`;
+    }
+
+    if (hudStatusLabel) {
+      hudStatusLabel.textContent = finalStatus.hud || finalStatus.label.toUpperCase();
+    }
+
+    if (hudStatusText) {
+      hudStatusText.textContent = finalStatus.hudText || finalStatus.message;
+    }
+
+    if (headerStatusText) {
+      headerStatusText.textContent = finalStatus.label;
+    }
   }
 
   async function loadCompanyStatus() {
     try {
-      const response = await fetch(
-        `https://darkmode-customs-status.matthew-wellman.workers.dev/status?cache=${Date.now()}`, 
-        {
+      const response = await fetch(`${WORKER_STATUS_URL}?cache=${Date.now()}`, {
         cache: "no-store",
-      };
+      });
 
-      if (!response.ok) throw new Error("Status file not found");
+      if (!response.ok) {
+        throw new Error("Status endpoint could not be loaded.");
+      }
 
       const statusData = await response.json();
       applyCompanyStatus(statusData);
     } catch (error) {
-      applyCompanyStatus({ status: "online" });
+      console.warn("Company status fallback active:", error);
+      applyCompanyStatus({
+        status: "online",
+        label: "Online",
+        message: "DarkMode Customs™ is currently online.",
+        lastUpdated: "Recently",
+      });
     }
   }
 
   loadCompanyStatus();
+  setInterval(loadCompanyStatus, 60000);
 
   function moveCursor(event) {
     if (!cursorDot || isTouchDevice) return;
@@ -125,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("mouseenter", showCursor);
 
     const hoverTargets = document.querySelectorAll(
-      "a, button, .tilt-card, .service-card, .price-card, .process-card, .founder-card, .final-card"
+      "a, button, .tilt-card, .service-card, .price-card, .process-card, .founder-card, .final-card, .company-status-card, .showroom-card, .tech-frame, .preview-screen"
     );
 
     hoverTargets.forEach((target) => {
@@ -297,8 +369,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const cardX = event.clientX - rect.left;
       const cardY = event.clientY - rect.top;
 
-      const rotateY = ((cardX / rect.width) - 0.5) * 10;
-      const rotateX = ((cardY / rect.height) - 0.5) * -10;
+      const rotateY = (cardX / rect.width - 0.5) * 10;
+      const rotateX = (cardY / rect.height - 0.5) * -10;
 
       card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
     });
