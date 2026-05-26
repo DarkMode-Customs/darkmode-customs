@@ -1,10 +1,10 @@
 {
-  "status": "Online",
-  "label": "Online",
+  "ok": true,
+  "key": "online",
   "emoji": "🟢",
-  "message": "DarkMode Customs™ is online and accepting new custom design requests.",
-  "terminal": "Ready for deployment",
-  "orders": "Accepting Orders",
-  "support": "Active",
-  "updated": "2026-05-25"
+  "label": "Online",
+  "status": "🟢 Online",
+  "message": "DarkMode Customs™ is online and accepting orders.",
+  "updatedAt": null,
+  "updatedBy": "System"
 }
