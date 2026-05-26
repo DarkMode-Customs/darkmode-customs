@@ -15,6 +15,8 @@
 </head>
 <body>
 
+  <div class="cursor-dot" aria-hidden="true"></div>
+
   <div class="site-bg"></div>
   <div class="site-grid"></div>
   <div class="site-noise"></div>
@@ -122,6 +124,11 @@
               alt="DarkMode Customs Discord theme preview on monitor and laptop"
               class="hero-image"
             />
+          </div>
+
+          <div class="float-card float-card-founder">
+            <small>Founder</small>
+            <strong>🪖𝕊𝔾𝕋. ℝℍ𝕀ℕ𝕆™</strong>
           </div>
 
           <div class="float-card float-card-left">
@@ -552,6 +559,47 @@
         if (mobileToggle) mobileToggle.classList.remove("active");
       });
     });
+
+
+    const cursorDot = document.querySelector(".cursor-dot");
+    const cursorTargets = document.querySelectorAll("a, button, summary, .service-card, .pricing-btn, .btn");
+
+    if (cursorDot) {
+      let cursorX = window.innerWidth / 2;
+      let cursorY = window.innerHeight / 2;
+      let dotX = cursorX;
+      let dotY = cursorY;
+
+      cursorDot.style.setProperty("--cursor-x", `${cursorX}px`);
+      cursorDot.style.setProperty("--cursor-y", `${cursorY}px`);
+      cursorDot.classList.add("is-ready");
+
+      const moveCursor = (event) => {
+        cursorX = event.clientX;
+        cursorY = event.clientY;
+        cursorDot.classList.add("is-ready");
+      };
+
+      const renderCursor = () => {
+        dotX += (cursorX - dotX) * 0.36;
+        dotY += (cursorY - dotY) * 0.36;
+
+        cursorDot.style.setProperty("--cursor-x", `${dotX}px`);
+        cursorDot.style.setProperty("--cursor-y", `${dotY}px`);
+
+        requestAnimationFrame(renderCursor);
+      };
+
+      window.addEventListener("mousemove", moveCursor, { passive: true });
+      window.addEventListener("pointermove", moveCursor, { passive: true });
+
+      cursorTargets.forEach((target) => {
+        target.addEventListener("mouseenter", () => cursorDot.classList.add("is-hovering"));
+        target.addEventListener("mouseleave", () => cursorDot.classList.remove("is-hovering"));
+      });
+
+      renderCursor();
+    }
 
     const revealElements = document.querySelectorAll(".reveal");
 
