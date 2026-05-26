@@ -48,6 +48,11 @@
     </nav>
 
     <div class="header-actions">
+      <div class="site-status-pill status-online" id="siteStatusPill" aria-label="Company status">
+        <span class="status-light" id="statusLight"></span>
+        <span id="statusLabel">Online</span>
+      </div>
+
       <a class="header-link" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Discord</a>
       <a class="btn btn-small btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
         Order Now
@@ -61,6 +66,11 @@
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-status-pill status-online" id="mobileStatusPill">
+      <span class="status-light"></span>
+      <span id="mobileStatusLabel">Online</span>
+    </div>
+
     <a href="#services">Services</a>
     <a href="#experience">Experience</a>
     <a href="#pricing">Pricing</a>
@@ -87,6 +97,14 @@
           graphic packs, cyber interfaces, and digital identity systems for
           creators, communities, gamers, teams, and brands.
         </p>
+
+        <div class="status-panel status-online" id="statusPanel">
+          <div>
+            <span class="status-light"></span>
+            <strong id="statusPanelTitle">🟢 Online</strong>
+          </div>
+          <p id="statusPanelMessage">DarkMode Customs™ is online and accepting new custom design requests.</p>
+        </div>
 
         <div class="hero-buttons">
           <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
@@ -138,7 +156,7 @@
             <div class="hud-main">
               <div class="hud-header">
                 <p>DarkMode Customs™</p>
-                <small>ONLINE</small>
+                <small id="hudStatusText">ONLINE</small>
               </div>
 
               <div class="terminal">
@@ -154,7 +172,7 @@
 
                 <div>
                   <b>Status</b>
-                  <span>Ready for deployment</span>
+                  <span id="terminalStatusText">Ready for deployment</span>
                 </div>
               </div>
 
