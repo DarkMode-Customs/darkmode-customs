@@ -4,248 +4,158 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>DarkMode Customs™ Status Admin</title>
+  <title>Admin Status Panel | DarkMode Customs™</title>
+  <meta
+    name="description"
+    content="DarkMode Customs™ admin status control panel."
+  />
 
-  <style>
-    :root {
-      --bg: #02030a;
-      --panel: rgba(8, 14, 32, 0.9);
-      --text: #eff8ff;
-      --muted: #91a8bc;
-      --cyan: #59f7ff;
-      --green: #6cffbd;
-      --gold: #ffd36a;
-      --red: #ff4f6d;
-      --purple: #9f5cff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      margin: 0;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      font-family: Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 18% 12%, rgba(89, 247, 255, 0.18), transparent 32%),
-        radial-gradient(circle at 84% 18%, rgba(159, 92, 255, 0.2), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(255, 79, 216, 0.12), transparent 40%),
-        linear-gradient(180deg, #06101c, #02030a);
-    }
-
-    .panel {
-      width: min(100%, 680px);
-      padding: 32px;
-      border: 1px solid rgba(89, 247, 255, 0.24);
-      border-radius: 30px;
-      background: var(--panel);
-      box-shadow:
-        0 0 80px rgba(89, 247, 255, 0.13),
-        0 30px 90px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(24px);
-    }
-
-    .badge {
-      display: inline-flex;
-      margin-bottom: 18px;
-      padding: 8px 12px;
-      border: 1px solid rgba(89, 247, 255, 0.28);
-      border-radius: 999px;
-      color: var(--cyan);
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: rgba(89, 247, 255, 0.06);
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-    }
-
-    p {
-      margin: 0 0 24px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    label {
-      display: block;
-      margin: 18px 0 8px;
-      color: var(--cyan);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      font-size: 0.74rem;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 15px 16px;
-      border: 1px solid rgba(89, 247, 255, 0.24);
-      border-radius: 16px;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.055);
-      outline: none;
-    }
-
-    textarea {
-      min-height: 96px;
-      resize: vertical;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    button {
-      min-height: 60px;
-      border: 0;
-      border-radius: 18px;
-      color: #001216;
-      font-weight: 900;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    button:hover {
-      transform: translateY(-3px);
-    }
-
-    .online {
-      background: linear-gradient(135deg, var(--green), white);
-    }
-
-    .maintenance {
-      background: linear-gradient(135deg, var(--gold), white);
-    }
-
-    .offline {
-      background: linear-gradient(135deg, var(--red), white);
-    }
-
-    .result {
-      margin-top: 20px;
-      padding: 16px;
-      border: 1px solid rgba(89, 247, 255, 0.16);
-      border-radius: 16px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.05);
-      white-space: pre-wrap;
-      line-height: 1.5;
-      min-height: 74px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 20px;
-      color: var(--cyan);
-      font-weight: 900;
-      text-decoration: none;
-    }
-
-    @media (max-width: 640px) {
-      .buttons {
-        grid-template-columns: 1fr;
-      }
-
-      .panel {
-        padding: 24px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <main class="panel">
-    <div class="badge">DarkMode Customs™ Admin</div>
+<body data-page="admin">
+  <div id="scrollProgress" class="scroll-progress"></div>
+  <div id="cursorDot" class="cursor-dot"></div>
 
-    <h1>Status Panel</h1>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="DarkMode Customs home">
+          <span class="brand-mark">DMC</span>
+          <span class="brand-text">DarkMode Customs™</span>
+        </a>
 
-    <p>
-      Use this panel to update the live company status on the website and Discord.
-      Keep your admin token private.
-    </p>
+        <button class="mobile-toggle" type="button" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-    <label for="adminToken">Admin Token</label>
-    <input
-      id="adminToken"
-      type="password"
-      placeholder="Paste your Cloudflare ADMIN_TOKEN"
-      autocomplete="off"
-    />
+        <div class="desktop-nav">
+          <a href="index.html">Home</a>
+          <a href="showroom.html">Showroom</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a class="active" href="admin.html">Admin</a>
+        </div>
 
-    <label for="customMessage">Optional Custom Message</label>
-    <textarea
-      id="customMessage"
-      placeholder="Leave blank to use the default status message."
-    ></textarea>
+        <div class="nav-right">
+          <div id="globalStatus" class="status-pill" data-status="loading">
+            <span class="status-light"></span>
+            <span class="status-text">Checking Status</span>
+          </div>
 
-    <div class="buttons">
-      <button class="online" onclick="setStatus('online')">🟢 Online</button>
-      <button class="maintenance" onclick="setStatus('maintenance')">🟡 Maintenance</button>
-      <button class="offline" onclick="setStatus('offline')">🔴 Offline</button>
-    </div>
+          <a class="nav-cta" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+            Discord
+          </a>
+        </div>
+      </div>
 
-    <div class="result" id="resultBox">
-      Waiting for status update...
-    </div>
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="showroom.html">Showroom</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a class="active" href="admin.html">Admin</a>
+        <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Join Discord</a>
+      </div>
+    </nav>
+  </header>
 
-    <a class="back-link" href="./index.html">← Back to Website</a>
+  <main class="admin-main">
+    <section class="admin-section">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+
+      <div class="admin-shell reveal">
+        <div class="admin-card">
+          <div class="admin-header">
+            <div class="eyebrow">Company Status Control</div>
+            <h1>DarkMode Customs™ Admin</h1>
+            <p>
+              Update the live website status, Cloudflare KV value, and Discord
+              company-status webhook from one panel.
+            </p>
+          </div>
+
+          <div class="admin-current">
+            <span>Current Website Status</span>
+            <strong id="adminCurrentStatus">Checking...</strong>
+          </div>
+
+          <form id="statusForm" class="admin-form">
+            <div class="field">
+              <label for="adminToken">Admin Token</label>
+              <input
+                id="adminToken"
+                name="adminToken"
+                type="password"
+                placeholder="Only needed if ADMIN_TOKEN is set in Cloudflare"
+                autocomplete="current-password"
+              />
+              <small>
+                Leave blank if your Worker does not use an ADMIN_TOKEN secret.
+              </small>
+            </div>
+
+            <div class="field">
+              <label for="updatedBy">Updated By</label>
+              <input
+                id="updatedBy"
+                name="updatedBy"
+                type="text"
+                value="🪖𝕊𝔾𝕋. ℝℍ𝕀ℕ𝕆™"
+              />
+            </div>
+
+            <div class="field">
+              <label for="statusMessage">Custom Message</label>
+              <textarea
+                id="statusMessage"
+                name="statusMessage"
+                placeholder="Optional custom message for the website and Discord webhook."
+              ></textarea>
+            </div>
+
+            <div class="status-options">
+              <button class="status-option online" type="button" data-admin-status="online">
+                <span>🟢</span>
+                <strong>Online</strong>
+                <small>Website and services are available.</small>
+              </button>
+
+              <button class="status-option maintenance" type="button" data-admin-status="maintenance">
+                <span>🟡</span>
+                <strong>Under Maintenance</strong>
+                <small>Some services may be temporarily limited.</small>
+              </button>
+
+              <button class="status-option offline" type="button" data-admin-status="offline">
+                <span>🔴</span>
+                <strong>Offline</strong>
+                <small>Services are temporarily unavailable.</small>
+              </button>
+            </div>
+
+            <input id="selectedStatus" name="selectedStatus" type="hidden" value="online" />
+
+            <button class="btn btn-primary full" type="submit">
+              Update Company Status
+            </button>
+
+            <div id="adminMessage" class="admin-message" role="status"></div>
+          </form>
+        </div>
+
+        <div class="admin-links">
+          <a href="index.html">Back to Website</a>
+          <a href="showroom.html">Open Showroom</a>
+          <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Open Discord</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    const WORKER_URL = "https://darkmode-customs-status.matthew-wellman.workers.dev/status";
-
-    async function setStatus(status) {
-      const token = document.getElementById("adminToken").value.trim();
-      const customMessage = document.getElementById("customMessage").value.trim();
-      const resultBox = document.getElementById("resultBox");
-
-      if (!token) {
-        resultBox.textContent = "Missing admin token.";
-        return;
-      }
-
-      resultBox.textContent = "Updating status...";
-
-      try {
-        const response = await fetch(WORKER_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            status,
-            message: customMessage || undefined,
-          }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          resultBox.textContent = `Update failed:\n${JSON.stringify(data, null, 2)}`;
-          return;
-        }
-
-        resultBox.textContent = `Status updated successfully:\n${JSON.stringify(data.status, null, 2)}`;
-      } catch (error) {
-        resultBox.textContent = `Connection error:\n${error.message}`;
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
