@@ -5,327 +5,321 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Showroom | DarkMode Customs™</title>
-
   <meta
     name="description"
-    content="DarkMode Customs™ showroom featuring premium cyber-tech frames for Discord themes, server visuals, branding, and custom digital designs."
+    content="Explore premium tech frames and display concepts from DarkMode Customs™."
   />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="./style.css" />
-  <script src="./script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="scroll-progress" id="scrollProgress"></div>
+<body data-page="showroom">
+  <div id="scrollProgress" class="scroll-progress"></div>
+  <div id="cursorDot" class="cursor-dot"></div>
 
-  <canvas class="cyber-canvas" id="cyberCanvas"></canvas>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="DarkMode Customs home">
+          <span class="brand-mark">DMC</span>
+          <span class="brand-text">DarkMode Customs™</span>
+        </a>
 
-  <div class="background-grid"></div>
-  <div class="background-noise"></div>
-  <div class="background-glow glow-one"></div>
-  <div class="background-glow glow-two"></div>
-  <div class="background-glow glow-three"></div>
+        <button class="mobile-toggle" type="button" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-  <header class="site-header" id="siteHeader">
-    <a href="./index.html#home" class="brand">
-      <span class="brand-badge">DM</span>
-      <span class="brand-name">DarkMode Customs™</span>
-    </a>
+        <div class="desktop-nav">
+          <a href="index.html">Home</a>
+          <a class="active" href="showroom.html">Showroom</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="admin.html">Admin</a>
+        </div>
 
-    <nav class="desktop-nav">
-      <a href="./index.html#services">Services</a>
-      <a href="./index.html#experience">Experience</a>
-      <a class="active" href="./showroom.html">Showroom</a>
-      <a href="./index.html#pricing">Pricing</a>
-      <a href="./index.html#founder">Founder</a>
-    </nav>
+        <div class="nav-right">
+          <div id="globalStatus" class="status-pill" data-status="loading">
+            <span class="status-light"></span>
+            <span class="status-text">Checking Status</span>
+          </div>
 
-    <div class="header-actions">
-      <div class="header-status-pill" id="headerStatusPill" data-status="loading">
-        <span id="headerStatusDot"></span>
-        <strong id="headerStatusText">Checking</strong>
+          <a class="nav-cta" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+            Join Discord
+          </a>
+        </div>
       </div>
 
-      <a class="header-link" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Discord</a>
-
-      <a class="btn btn-small btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
-        Order Now
-      </a>
-    </div>
-
-    <button class="menu-button" id="menuButton" aria-label="Open navigation menu">
-      <span></span>
-      <span></span>
-    </button>
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a class="active" href="showroom.html">Showroom</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="admin.html">Admin</a>
+        <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Join Discord</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">Order Now</a>
+      </div>
+    </nav>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="./index.html#services">Services</a>
-    <a href="./index.html#experience">Experience</a>
-    <a class="active" href="./showroom.html">Showroom</a>
-    <a href="./index.html#pricing">Pricing</a>
-    <a href="./index.html#founder">Founder</a>
-    <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Join Discord</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">Order Form</a>
-  </div>
-
   <main>
-    <section class="section showroom-hero" id="showroom">
-      <div class="showroom-hero-copy reveal">
-        <p class="mini-title">DarkMode Customs™ Showroom</p>
+    <section class="showroom-hero">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
 
-        <h1>
-          Premium display frames for
-          <span>themes, servers, branding, and digital builds.</span>
-        </h1>
+      <div class="container showroom-hero-grid">
+        <div class="showroom-hero-copy reveal">
+          <div class="eyebrow">DarkMode Customs™ Showroom</div>
+          <h1>
+            Tech frames ready for
+            <span>display themes.</span>
+          </h1>
+          <p>
+            A premium concept showroom for Discord themes, cyber screens,
+            command dashboards, launch panels, and future client-ready display builds.
+          </p>
 
-        <p>
-          This showroom is built as a high-end gallery system. Each frame is ready
-          for screenshots, Discord themes, server previews, website concepts,
-          graphic packs, and finished client showcases.
-        </p>
-
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
-            Order a Custom Build
-          </a>
-
-          <a class="btn btn-secondary" href="./index.html">
-            Back to Home
-          </a>
-        </div>
-      </div>
-
-      <div class="showroom-command reveal tilt-card">
-        <div class="command-top">
-          <span></span>
-          <span></span>
-          <span></span>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+              Request a Custom Theme
+            </a>
+            <a class="btn btn-secondary" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+              Join Discord
+            </a>
+          </div>
         </div>
 
-        <div class="command-screen">
-          <p>SHOWROOM SYSTEM</p>
-          <h2>Gallery Ready</h2>
-          <small>Insert theme previews into each frame.</small>
+        <div class="showroom-command reveal">
+          <div class="command-top">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
-          <div class="command-lines">
-            <i></i>
-            <i></i>
-            <i></i>
-            <i></i>
+          <div class="showroom-radar">
+            <div class="radar-ring"></div>
+            <div class="radar-ring second"></div>
+            <div class="radar-sweep"></div>
+            <div class="radar-core"></div>
+          </div>
+
+          <div class="showroom-command-text">
+            <small>Showroom Status</small>
+            <strong id="showroomStatusText">Checking...</strong>
           </div>
         </div>
       </div>
     </section>
 
     <section class="section showroom-section">
-      <div class="section-heading reveal">
-        <p>Theme Display Frames</p>
-        <h2>Drop your finished designs into premium tech frames.</h2>
-        <span>
-          Replace the placeholder screens with your theme screenshots later.
-          These are built to make every design look like a luxury product.
-        </span>
-      </div>
-
-      <div class="showroom-grid">
-        <article class="showroom-card reveal tilt-card">
-          <div class="showroom-card-top">
-            <span>01</span>
-            <small>Discord Theme</small>
+      <div class="container">
+        <div class="showroom-toolbar reveal">
+          <div>
+            <h2>Display Frames</h2>
+            <p>Filter concepts by style type.</p>
           </div>
 
-          <div class="tech-frame monitor-frame">
-            <div class="frame-bar">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
+          <div class="showroom-filters">
+            <button class="filter-btn active" type="button" data-filter="all">All</button>
+            <button class="filter-btn" type="button" data-filter="discord">Discord</button>
+            <button class="filter-btn" type="button" data-filter="website">Website</button>
+            <button class="filter-btn" type="button" data-filter="branding">Branding</button>
+            <button class="filter-btn" type="button" data-filter="automation">Automation</button>
+          </div>
+        </div>
 
-            <div class="preview-screen">
-              <div>
-                <strong>Theme Preview</strong>
-                <small>Add screenshot here</small>
+        <div class="showroom-grid">
+          <article class="showroom-card reveal" data-category="discord">
+            <div class="preview-screen cosmic">
+              <div class="screen-bars"></div>
+              <div class="screen-panel left"></div>
+              <div class="screen-panel right"></div>
+              <div class="screen-orb"></div>
+            </div>
+            <div class="showroom-content">
+              <div class="tag-row">
+                <span>Discord</span>
+                <span>Animated</span>
               </div>
+              <h3>Cosmic Discord Command</h3>
+              <p>
+                A luxury Discord interface concept with dark glass panels,
+                animated glow depth, and space-command energy.
+              </p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+                Request This Style
+              </a>
             </div>
+          </article>
 
-            <div class="monitor-stand"></div>
-          </div>
-
-          <h3>Flagship Discord Theme</h3>
-          <p>Perfect for full-screen Discord CSS theme showcases.</p>
-        </article>
-
-        <article class="showroom-card reveal tilt-card">
-          <div class="showroom-card-top">
-            <span>02</span>
-            <small>Laptop View</small>
-          </div>
-
-          <div class="tech-frame laptop-frame">
-            <div class="preview-screen">
-              <div>
-                <strong>Laptop Preview</strong>
-                <small>Add screenshot here</small>
+          <article class="showroom-card reveal" data-category="website">
+            <div class="preview-screen neon">
+              <div class="screen-grid"></div>
+              <div class="screen-title"></div>
+              <div class="screen-cards"></div>
+            </div>
+            <div class="showroom-content">
+              <div class="tag-row">
+                <span>Website</span>
+                <span>Landing Page</span>
               </div>
+              <h3>Neon Business Landing</h3>
+              <p>
+                A premium landing-page frame for businesses that want a
+                futuristic, marketable, high-conversion digital presence.
+              </p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+                Request This Style
+              </a>
             </div>
+          </article>
 
-            <div class="laptop-base"></div>
-          </div>
-
-          <h3>Angled Laptop Display</h3>
-          <p>Great for website mockups, dashboards, and theme previews.</p>
-        </article>
-
-        <article class="showroom-card reveal tilt-card">
-          <div class="showroom-card-top">
-            <span>03</span>
-            <small>Server Brand</small>
-          </div>
-
-          <div class="tech-frame discord-frame">
-            <div class="discord-sidebar">
-              <i></i>
-              <i></i>
-              <i></i>
-              <i></i>
+          <article class="showroom-card reveal" data-category="branding">
+            <div class="preview-screen gold">
+              <div class="brand-badge">DMC</div>
+              <div class="brand-lines"></div>
+              <div class="brand-glow"></div>
             </div>
-
-            <div class="discord-preview">
-              <div class="discord-header"></div>
-              <div class="discord-message"></div>
-              <div class="discord-message short"></div>
-              <div class="discord-panel"></div>
-            </div>
-          </div>
-
-          <h3>Discord Server Identity</h3>
-          <p>Built for server layouts, webhook previews, and channel presentation.</p>
-        </article>
-
-        <article class="showroom-card reveal tilt-card">
-          <div class="showroom-card-top">
-            <span>04</span>
-            <small>Mobile View</small>
-          </div>
-
-          <div class="phone-stage">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-
-              <div class="preview-screen phone-screen">
-                <div>
-                  <strong>Mobile</strong>
-                  <small>Add preview</small>
-                </div>
+            <div class="showroom-content">
+              <div class="tag-row">
+                <span>Branding</span>
+                <span>Luxury</span>
               </div>
+              <h3>Luxury Brand Plate</h3>
+              <p>
+                A display-card concept for founders, server owners,
+                launch announcements, and high-end digital brand identity.
+              </p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+                Request This Style
+              </a>
             </div>
-          </div>
+          </article>
 
-          <h3>Mobile Theme Preview</h3>
-          <p>Use this for responsive website shots or mobile community previews.</p>
-        </article>
-
-        <article class="showroom-card wide reveal tilt-card">
-          <div class="showroom-card-top">
-            <span>05</span>
-            <small>Banner / Promo</small>
-          </div>
-
-          <div class="wide-display-frame">
-            <div class="preview-screen wide-screen">
-              <div>
-                <strong>Banner Showcase</strong>
-                <small>Add promo graphic here</small>
+          <article class="showroom-card reveal" data-category="automation">
+            <div class="preview-screen status">
+              <div class="status-board">
+                <span class="green"></span>
+                <span class="yellow"></span>
+                <span class="red"></span>
               </div>
+              <div class="status-lines"></div>
             </div>
-          </div>
-
-          <h3>Premium Promo Graphic</h3>
-          <p>Designed for banners, launch graphics, social previews, and ad-style visuals.</p>
-        </article>
-
-        <article class="showroom-card wide reveal tilt-card">
-          <div class="showroom-card-top">
-            <span>06</span>
-            <small>Full Build</small>
-          </div>
-
-          <div class="dual-display">
-            <div class="mini-monitor">
-              <div class="preview-screen">
-                <div>
-                  <strong>Desktop</strong>
-                  <small>Preview</small>
-                </div>
+            <div class="showroom-content">
+              <div class="tag-row">
+                <span>Automation</span>
+                <span>Status</span>
               </div>
+              <h3>Company Status System</h3>
+              <p>
+                Website status badges, Cloudflare Worker backend,
+                admin controls, and Discord webhook status announcements.
+              </p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+                Request This Style
+              </a>
             </div>
+          </article>
 
-            <div class="mini-laptop">
-              <div class="preview-screen">
-                <div>
-                  <strong>Laptop</strong>
-                  <small>Preview</small>
-                </div>
+          <article class="showroom-card reveal" data-category="discord">
+            <div class="preview-screen obsidian">
+              <div class="obsidian-sidebar"></div>
+              <div class="obsidian-chat"></div>
+              <div class="obsidian-waves"></div>
+            </div>
+            <div class="showroom-content">
+              <div class="tag-row">
+                <span>Discord</span>
+                <span>Obsidian</span>
               </div>
+              <h3>Obsidian Server Skin</h3>
+              <p>
+                A deep black, glass-panel Discord style with subtle motion,
+                premium glow, and polished server presentation.
+              </p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+                Request This Style
+              </a>
             </div>
-          </div>
+          </article>
 
-          <h3>Complete Setup Showcase</h3>
-          <p>Use this for premium client deliveries with multiple preview angles.</p>
-        </article>
+          <article class="showroom-card reveal" data-category="website">
+            <div class="preview-screen cyber">
+              <div class="cyber-ring"></div>
+              <div class="cyber-ring two"></div>
+              <div class="cyber-terminal"></div>
+            </div>
+            <div class="showroom-content">
+              <div class="tag-row">
+                <span>Website</span>
+                <span>Cyber UI</span>
+              </div>
+              <h3>Cyber Tech Portal</h3>
+              <p>
+                A high-impact website concept with HUD details,
+                animated panels, tech frames, and premium motion design.
+              </p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+                Request This Style
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section showroom-instructions">
-      <div class="final-card reveal">
-        <p>How to add previews later</p>
-        <h2>Drop screenshots into the frame backgrounds.</h2>
-        <span>
-          When you have a finished theme screenshot, upload it to your GitHub
-          assets folder, then add it to the frame using the preview style.
-        </span>
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <div class="eyebrow">Need a Display Theme?</div>
+          <h2>Pick a direction, then make it custom.</h2>
+          <p>
+            These frames are starter directions. Every build can be customized
+            with colors, animations, screenshots, Discord branding, and service details.
+          </p>
 
-        <div class="code-note">
-          style="--preview: url('./assets/showroom/theme-01.png');"
-        </div>
-
-        <div class="hero-buttons centered">
-          <a class="btn btn-primary" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
-            Join Discord
-          </a>
-
-          <a class="btn btn-secondary" href="./index.html">
-            Return Home
-          </a>
+          <div class="hero-actions center">
+            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+              Start Order
+            </a>
+            <a class="btn btn-secondary" href="index.html">
+              Back Home
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div>
-      <strong>DarkMode Customs™</strong>
-      <p>Premium cyber-tech design for Discord, brands, communities, and creators.</p>
-    </div>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand footer-brand" href="index.html">
+          <span class="brand-mark">DMC</span>
+          <span class="brand-text">DarkMode Customs™</span>
+        </a>
+        <p>
+          Premium Discord themes, digital graphics, web visuals, and cyber-tech
+          business systems.
+        </p>
+      </div>
 
-    <div>
-      <a href="./index.html">Home</a>
-      <a href="./showroom.html">Showroom</a>
-      <a href="./index.html#services">Services</a>
-      <a href="./index.html#pricing">Pricing</a>
-      <a href="./index.html#founder">Founder</a>
-      <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Discord</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">Order Form</a>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="showroom.html">Showroom</a>
+        <a href="admin.html">Admin</a>
+        <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Discord</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">Order Form</a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> DarkMode Customs™. All rights reserved.</span>
+        <span>Founder: 🪖𝕊𝔾𝕋. ℝℍ𝕀ℕ𝕆™</span>
+      </div>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
