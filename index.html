@@ -15,8 +15,6 @@
 </head>
 <body>
 
-  <div class="cursor-dot" aria-hidden="true"></div>
-
   <div class="site-bg"></div>
   <div class="site-grid"></div>
   <div class="site-noise"></div>
@@ -554,33 +552,6 @@
         if (mobileToggle) mobileToggle.classList.remove("active");
       });
     });
-
-
-    const cursorDot = document.querySelector(".cursor-dot");
-    const cursorTargets = document.querySelectorAll("a, button, summary, .service-card, .pricing-btn, .btn");
-
-    if (cursorDot) {
-      const moveCursor = (event) => {
-        cursorDot.classList.remove("is-hidden");
-        cursorDot.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
-      };
-
-      document.addEventListener("mousemove", moveCursor, { passive: true });
-      document.addEventListener("pointermove", moveCursor, { passive: true });
-
-      document.addEventListener("mouseenter", () => {
-        cursorDot.classList.remove("is-hidden");
-      });
-
-      document.addEventListener("mouseleave", () => {
-        cursorDot.classList.add("is-hidden");
-      });
-
-      cursorTargets.forEach((target) => {
-        target.addEventListener("mouseenter", () => cursorDot.classList.add("is-hovering"));
-        target.addEventListener("mouseleave", () => cursorDot.classList.remove("is-hovering"));
-      });
-    }
 
     const revealElements = document.querySelectorAll(".reveal");
 
