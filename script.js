@@ -83,8 +83,8 @@ document.querySelectorAll(".tilt-card").forEach((card) => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const rotateX = ((y / rect.height) - 0.5) * -8;
-    const rotateY = ((x / rect.width) - 0.5) * 8;
+    const rotateX = ((y / rect.height) - 0.5) * -7;
+    const rotateY = ((x / rect.width) - 0.5) * 7;
 
     card.style.setProperty("--mx", `${x}px`);
     card.style.setProperty("--my", `${y}px`);
@@ -105,7 +105,7 @@ function animateCounters() {
 
   counters.forEach((counter) => {
     const target = Number(counter.dataset.count);
-    const duration = 1200;
+    const duration = 1250;
     const start = performance.now();
 
     function update(now) {
@@ -139,22 +139,49 @@ const statObserver = new IntersectionObserver(
 );
 
 const stats = document.querySelector(".hero-stats");
+
 if (stats) {
   statObserver.observe(stats);
+}
+
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabPanels = document.querySelectorAll(".tab-panel");
+
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.tab;
+
+    tabButtons.forEach((item) => item.classList.remove("active"));
+    tabPanels.forEach((panel) => panel.classList.remove("active"));
+
+    button.classList.add("active");
+    document.getElementById(target)?.classList.add("active");
+  });
+});
+
+const image = document.querySelector(".monitor-screen img");
+const fallback = document.querySelector(".screen-fallback");
+
+if (image && fallback) {
+  image.addEventListener("error", () => {
+    image.style.display = "none";
+    fallback.style.display = "block";
+  });
+
+  image.addEventListener("load", () => {
+    fallback.style.display = "none";
+  });
 }
 
 const canvas = document.getElementById("techCanvas");
 const ctx = canvas.getContext("2d");
 
-let width;
-let height;
 let particles = [];
 let sparks = [];
 
 function resizeCanvas() {
-  width = canvas.width = window.innerWidth * window.devicePixelRatio;
-  height = canvas.height = window.innerHeight * window.devicePixelRatio;
-
+  canvas.width = window.innerWidth * window.devicePixelRatio;
+  canvas.height = window.innerHeight * window.devicePixelRatio;
   canvas.style.width = `${window.innerWidth}px`;
   canvas.style.height = `${window.innerHeight}px`;
 
@@ -164,15 +191,15 @@ function resizeCanvas() {
 }
 
 function createParticles() {
-  const count = Math.min(Math.floor(window.innerWidth / 9), 160);
+  const count = Math.min(Math.floor(window.innerWidth / 8), 170);
 
   particles = Array.from({ length: count }, () => ({
     x: Math.random() * window.innerWidth,
     y: Math.random() * window.innerHeight,
     vx: (Math.random() - 0.5) * 0.42,
     vy: (Math.random() - 0.5) * 0.42,
-    size: Math.random() * 1.6 + 0.5,
-    alpha: Math.random() * 0.55 + 0.15,
+    size: Math.random() * 1.7 + 0.5,
+    alpha: Math.random() * 0.52 + 0.15,
   }));
 }
 
@@ -183,8 +210,8 @@ function addSpark(x, y) {
     sparks.push({
       x,
       y,
-      vx: (Math.random() - 0.5) * 2.5,
-      vy: (Math.random() - 0.5) * 2.5,
+      vx: (Math.random() - 0.5) * 2.4,
+      vy: (Math.random() - 0.5) * 2.4,
       life: 1,
       size: Math.random() * 2 + 1,
     });
@@ -206,7 +233,7 @@ window.addEventListener("mousemove", (event) => {
   }
 });
 
-function drawParticles() {
+function drawCanvas() {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
   const gradient = ctx.createRadialGradient(
@@ -215,11 +242,11 @@ function drawParticles() {
     0,
     mouseX,
     mouseY,
-    Math.max(window.innerWidth, window.innerHeight) * 0.6
+    Math.max(window.innerWidth, window.innerHeight) * 0.62
   );
 
-  gradient.addColorStop(0, "rgba(98, 247, 255, 0.08)");
-  gradient.addColorStop(0.3, "rgba(185, 92, 255, 0.035)");
+  gradient.addColorStop(0, "rgba(99, 247, 255, 0.085)");
+  gradient.addColorStop(0.34, "rgba(183, 92, 255, 0.04)");
   gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
 
   ctx.fillStyle = gradient;
@@ -236,15 +263,15 @@ function drawParticles() {
     const dyMouse = mouseY - particle.y;
     const mouseDistance = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
 
-    if (mouseDistance < 140) {
+    if (mouseDistance < 145) {
       particle.x -= dxMouse * 0.003;
       particle.y -= dyMouse * 0.003;
     }
 
     ctx.beginPath();
     ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(98, 247, 255, ${particle.alpha})`;
-    ctx.shadowColor = "rgba(98, 247, 255, 0.9)";
+    ctx.fillStyle = `rgba(99, 247, 255, ${particle.alpha})`;
+    ctx.shadowColor = "rgba(99, 247, 255, 0.9)";
     ctx.shadowBlur = 8;
     ctx.fill();
     ctx.shadowBlur = 0;
@@ -259,7 +286,7 @@ function drawParticles() {
         ctx.beginPath();
         ctx.moveTo(particle.x, particle.y);
         ctx.lineTo(other.x, other.y);
-        ctx.strokeStyle = `rgba(98, 247, 255, ${0.1 * (1 - distance / 110)})`;
+        ctx.strokeStyle = `rgba(99, 247, 255, ${0.1 * (1 - distance / 110)})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -284,7 +311,7 @@ function drawParticles() {
     }
   });
 
-  requestAnimationFrame(drawParticles);
+  requestAnimationFrame(drawCanvas);
 }
 
 window.addEventListener("resize", resizeCanvas);
@@ -292,28 +319,5 @@ window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
 if (!prefersReducedMotion) {
-  drawParticles();
+  drawCanvas();
 }
-
-const image = document.querySelector(".monitor-screen img");
-const fallback = document.querySelector(".screen-fallback");
-
-if (image && fallback) {
-  image.addEventListener("error", () => {
-    image.style.display = "none";
-    fallback.style.display = "block";
-  });
-
-  image.addEventListener("load", () => {
-    fallback.style.display = "none";
-  });
-}
-
-document.querySelectorAll(".price-card, .showcase-card").forEach((card) => {
-  card.addEventListener("mousemove", (event) => {
-    const rect = card.getBoundingClientRect();
-
-    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  });
-});
