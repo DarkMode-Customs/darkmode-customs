@@ -184,7 +184,6 @@ function initShowroomFilters() {
 
 async function loadCompanyStatus() {
   const statusData = await fetchCompanyStatus();
-
   applyStatusToPage(statusData);
 }
 
@@ -201,7 +200,7 @@ async function fetchCompanyStatus() {
 
     const data = await response.json();
     return normalizeStatusData(data);
-  } catch (workerError) {
+  } catch {
     try {
       const fallbackResponse = await fetch("status.json", {
         method: "GET",
@@ -297,7 +296,6 @@ function initAdminPanel() {
   const tokenInput = document.getElementById("adminToken");
   const updatedByInput = document.getElementById("updatedBy");
   const messageInput = document.getElementById("statusMessage");
-  const adminMessage = document.getElementById("adminMessage");
   const statusButtons = document.querySelectorAll("[data-admin-status]");
 
   const savedToken = localStorage.getItem("darkmode_admin_token");
@@ -329,7 +327,7 @@ function initAdminPanel() {
       localStorage.setItem("darkmode_admin_token", adminToken);
     }
 
-    setAdminMessage("Updating company status...", "neutral");
+    setAdminMessage("Updating company status and Discord webhook...", "neutral");
 
     try {
       const headers = {
@@ -360,7 +358,28 @@ function initAdminPanel() {
       const cleanStatus = normalizeStatusData(data);
 
       applyStatusToPage(cleanStatus);
-      setAdminMessage(`Status updated successfully: ${cleanStatus.emoji} ${cleanStatus.label}`, "success");
+
+      if (data.discord && data.discord.sent) {
+        setAdminMessage(
+          `Status updated successfully: ${cleanStatus.emoji} ${cleanStatus.label}. Discord webhook sent.`,
+          "success"
+        );
+      } else if (data.discord && data.discord.status === "skipped") {
+        setAdminMessage(
+          `Website status updated, but Discord was skipped: ${data.discord.reason}`,
+          "error"
+        );
+      } else if (data.discord && data.discord.status === "failed") {
+        setAdminMessage(
+          `Website status updated, but Discord failed: ${data.discord.details || data.discord.reason || "Unknown Discord webhook error."}`,
+          "error"
+        );
+      } else {
+        setAdminMessage(
+          `Website status updated: ${cleanStatus.emoji} ${cleanStatus.label}. Discord result unknown.`,
+          "error"
+        );
+      }
     } catch (error) {
       setAdminMessage(error.message || "Unable to update status.", "error");
     }
