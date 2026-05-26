@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DarkMode Customs™ | Cyber-Tech Digital Design Studio</title>
+
+  <meta
+    name="description"
+    content="DarkMode Customs™ creates premium Discord themes, server branding, cyber-tech graphics, and digital design systems."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <canvas class="cyber-canvas" id="cyberCanvas"></canvas>
+
+  <div class="background-grid"></div>
+  <div class="background-noise"></div>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+  <div class="background-glow glow-three"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a href="#home" class="brand">
+      <span class="brand-badge">DM</span>
+      <span class="brand-name">DarkMode Customs™</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#founder">Founder</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="site-status-pill status-online" id="siteStatusPill" aria-label="Company status">
+        <span class="status-light" id="statusLight"></span>
+        <span id="statusLabel">Online</span>
+      </div>
+
+      <a class="header-link" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Discord</a>
+      <a class="btn btn-small btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+        Order Now
+      </a>
+    </div>
+
+    <button class="menu-button" id="menuButton" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-status-pill status-online" id="mobileStatusPill">
+      <span class="status-light"></span>
+      <span id="mobileStatusLabel">Online</span>
+    </div>
+
+    <a href="#services">Services</a>
+    <a href="#experience">Experience</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#founder">Founder</a>
+    <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Join Discord</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">Order Form</a>
+  </div>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">
+          <span></span>
+          Premium Cyber-Tech Design Studio
+        </div>
+
+        <h1>
+          Digital design that looks
+          <span>expensive, futuristic, and impossible to ignore.</span>
+        </h1>
+
+        <p>
+          DarkMode Customs™ builds premium Discord themes, server branding,
+          graphic packs, cyber interfaces, and digital identity systems for
+          creators, communities, gamers, teams, and brands.
+        </p>
+
+        <div class="status-panel status-online" id="statusPanel">
+          <div>
+            <span class="status-light"></span>
+            <strong id="statusPanelTitle">🟢 Online</strong>
+          </div>
+          <p id="statusPanelMessage">DarkMode Customs™ is online and accepting new custom design requests.</p>
+        </div>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+            Start an Order
+          </a>
+
+          <a class="btn btn-secondary" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+            Join the Discord
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <strong>100%</strong>
+            <span>Custom visual builds</span>
+          </div>
+
+          <div>
+            <strong>24/7</strong>
+            <span>Discord-ready presence</span>
+          </div>
+
+          <div>
+            <strong>Elite</strong>
+            <span>Cyber-tech identity</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="hud-card tilt-card">
+          <div class="hud-top">
+            <div>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p>LIVE SYSTEM</p>
+          </div>
+
+          <div class="hud-screen">
+            <div class="hud-sidebar">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="hud-main">
+              <div class="hud-header">
+                <p>DarkMode Customs™</p>
+                <small id="hudStatusText">ONLINE</small>
+              </div>
+
+              <div class="terminal">
+                <div>
+                  <b>Founder</b>
+                  <span>🪖𝕊𝔾𝕋. ℝℍ𝕀ℕ𝕆™</span>
+                </div>
+
+                <div>
+                  <b>Service</b>
+                  <span>Premium cyber design</span>
+                </div>
+
+                <div>
+                  <b>Status</b>
+                  <span id="terminalStatusText">Ready for deployment</span>
+                </div>
+              </div>
+
+              <div class="data-grid">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hud-shine"></div>
+        </div>
+
+        <div class="floating-pill pill-one">Discord Themes</div>
+        <div class="floating-pill pill-two">Server Branding</div>
+        <div class="floating-pill pill-three">Cyber Graphics</div>
+      </div>
+    </section>
+
+    <section class="ticker">
+      <div class="ticker-track">
+        <span>Cyber Interfaces</span>
+        <span>Discord Themes</span>
+        <span>Luxury Digital Design</span>
+        <span>Animated Visual Systems</span>
+        <span>Community Identity</span>
+        <span>DarkMode Customs™</span>
+        <span>Server Branding</span>
+        <span>Premium Graphics</span>
+        <span>Cyber Interfaces</span>
+        <span>Discord Themes</span>
+        <span>Luxury Digital Design</span>
+        <span>Animated Visual Systems</span>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading reveal">
+        <p>What We Build</p>
+        <h2>An all-in-one digital design shop.</h2>
+        <span>
+          Everything is built around premium presentation, dark luxury styling,
+          clean structure, cyber visuals, and high-impact design.
+        </span>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card reveal tilt-card">
+          <div class="icon">01</div>
+          <h3>Custom Discord Themes</h3>
+          <p>
+            Premium Discord CSS themes with custom colors, animated backgrounds,
+            glowing panels, and dark luxury layouts.
+          </p>
+        </article>
+
+        <article class="service-card reveal tilt-card">
+          <div class="icon">02</div>
+          <h3>Server Branding</h3>
+          <p>
+            Server icons, banners, webhook visuals, channel presentation,
+            role styling, and complete Discord identity systems.
+          </p>
+        </article>
+
+        <article class="service-card reveal tilt-card">
+          <div class="icon">03</div>
+          <h3>Graphic Design Packs</h3>
+          <p>
+            Announcement graphics, showcase images, promo visuals, product
+            graphics, launch materials, and branded design assets.
+          </p>
+        </article>
+
+        <article class="service-card reveal tilt-card">
+          <div class="icon">04</div>
+          <h3>Cyber UI Concepts</h3>
+          <p>
+            Futuristic dashboards, interface mockups, website visuals,
+            control panels, and clean digital presentation systems.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section experience" id="experience">
+      <div class="experience-panel reveal">
+        <div class="experience-copy">
+          <p class="mini-title">The Experience</p>
+          <h2>Dark, animated, premium, and built to feel alive.</h2>
+          <span>
+            This is not basic design. DarkMode Customs™ focuses on glowing
+            interface energy, premium spacing, cyber-tech motion, glass panels,
+            and visuals that make your digital presence feel elite.
+          </span>
+
+          <div class="feature-list">
+            <div><i></i> Neon dot cursor</div>
+            <div><i></i> Animated particle network</div>
+            <div><i></i> Scroll progress bar</div>
+            <div><i></i> Premium glass panels</div>
+            <div><i></i> Cyber-tech movement</div>
+            <div><i></i> Mobile responsive layout</div>
+          </div>
+        </div>
+
+        <div class="orbital-display tilt-card">
+          <div class="ring ring-one"></div>
+          <div class="ring ring-two"></div>
+          <div class="ring ring-three"></div>
+
+          <div class="core">
+            <span>DM</span>
+          </div>
+
+          <div class="orbit-label label-one">Premium</div>
+          <div class="orbit-label label-two">Animated</div>
+          <div class="orbit-label label-three">Cyber</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process-section">
+      <div class="section-heading reveal">
+        <p>Process</p>
+        <h2>Simple order flow. Serious final product.</h2>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card reveal">
+          <span>01</span>
+          <h3>Join or Order</h3>
+          <p>Join the Discord or submit the order form with your project details.</p>
+        </article>
+
+        <article class="process-card reveal">
+          <span>02</span>
+          <h3>Lock the Direction</h3>
+          <p>Choose the colors, theme, style, animations, and overall design feel.</p>
+        </article>
+
+        <article class="process-card reveal">
+          <span>03</span>
+          <h3>Custom Build</h3>
+          <p>Your design is created around your server, brand, community, or idea.</p>
+        </article>
+
+        <article class="process-card reveal">
+          <span>04</span>
+          <h3>Delivery</h3>
+          <p>You receive a polished design ready to use, launch, or showcase.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="section-heading reveal">
+        <p>Pricing</p>
+        <h2>Start simple or go fully premium.</h2>
+        <span>
+          Choose the package that fits your project. Every level is designed to
+          make your digital presence look cleaner, darker, and more professional.
+        </span>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="price-card reveal tilt-card">
+          <h3>Basic</h3>
+          <p>Starter customization</p>
+          <strong>$10</strong>
+
+          <ul>
+            <li>Clean visual upgrade</li>
+            <li>DarkMode styling</li>
+            <li>Simple custom design</li>
+            <li>Great starter option</li>
+          </ul>
+
+          <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+            Choose Basic
+          </a>
+        </article>
+
+        <article class="price-card featured reveal tilt-card">
+          <div class="badge">Most Popular</div>
+          <h3>Premium</h3>
+          <p>Advanced visual identity</p>
+          <strong>$25</strong>
+
+          <ul>
+            <li>Premium cyber styling</li>
+            <li>Animated visual elements</li>
+            <li>Server or theme-focused design</li>
+            <li>More polished brand presence</li>
+          </ul>
+
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+            Choose Premium
+          </a>
+        </article>
+
+        <article class="price-card reveal tilt-card">
+          <h3>Full</h3>
+          <p>Complete luxury build</p>
+          <strong>$50</strong>
+
+          <ul>
+            <li>Full premium design package</li>
+            <li>Advanced animated styling</li>
+            <li>Complete visual direction</li>
+            <li>Best for serious launches</li>
+          </ul>
+
+          <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+            Choose Full
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section founder-section" id="founder">
+      <div class="founder-card reveal">
+        <div class="founder-icon">🪖</div>
+
+        <div>
+          <p class="mini-title">Founder</p>
+          <h2>🪖𝕊𝔾𝕋. ℝℍ𝕀ℕ𝕆™</h2>
+          <span>
+            DarkMode Customs™ is built for premium presentation, strong community
+            identity, professional structure, and visuals that make your project
+            look elite from the first click.
+          </span>
+        </div>
+
+        <a class="btn btn-primary" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+          Join Discord
+        </a>
+      </div>
+    </section>
+
+    <section class="section final-section">
+      <div class="final-card reveal">
+        <p>Ready to upgrade?</p>
+        <h2>Make your digital presence look expensive.</h2>
+        <span>
+          Join the Discord, submit the order form, and let DarkMode Customs™
+          build something that looks premium before anyone even reads a word.
+        </span>
+
+        <div class="hero-buttons centered">
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">
+            Submit Order Form
+          </a>
+
+          <a class="btn btn-secondary" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+            Join Discord
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>DarkMode Customs™</strong>
+      <p>Premium cyber-tech design for Discord, brands, communities, and creators.</p>
+    </div>
+
+    <div>
+      <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Discord</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7OIuzuclQ9Q_zHsZw9GgKKNs7Zb8ArCqbbpkb4_dei38T-A/viewform" target="_blank" rel="noopener">Order Form</a>
+      <a href="#home">Back to Top</a>
+    </div>
+  </footer>
+</body>
+</html>
