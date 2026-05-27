@@ -1,0 +1,19 @@
+DarkMode Customs™ Admin Access Notes
+
+What changed in this version:
+- The Admin tab is back on the public nav and footer.
+- Clicking Admin opens admin.html in its own admin window/tab.
+- The admin controls stay hidden until the private admin password is entered.
+- The admin token is not saved in localStorage.
+- Lock Admin clears the session and returns the page to the password gate.
+
+Default admin password:
+DMC-ADMIN-2026!
+
+Before launch:
+1. Change the admin password hash in script.js.
+2. Keep your Cloudflare Worker ADMIN_TOKEN secret active.
+3. For true page-level security, protect /admin.html with Cloudflare Access / Zero Trust.
+
+Important:
+This front-end password gate hides the admin panel from normal visitors, but real protection for status changes must stay on the Cloudflare Worker using ADMIN_TOKEN.
