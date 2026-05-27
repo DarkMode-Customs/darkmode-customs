@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Secure Admin Access | DarkMode Customs™</title>
+  <meta
+    name="description"
+    content="Secure DarkMode Customs™ admin access portal."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body data-page="admin">
+  <div id="scrollProgress" class="scroll-progress"></div>
+  <div id="cursorDot" class="cursor-dot"></div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="DarkMode Customs home">
+          <span class="brand-mark">DMC</span>
+          <span class="brand-text">DarkMode Customs™</span>
+        </a>
+
+        <button class="mobile-toggle" type="button" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="desktop-nav">
+          <a href="index.html">Home</a>
+          <a href="showroom.html">Showroom</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#pricing">Pricing</a>
+        </div>
+
+        <div class="nav-right">
+          <div id="globalStatus" class="status-pill" data-status="loading">
+            <span class="status-light"></span>
+            <span class="status-text">Checking Status</span>
+          </div>
+
+          <div id="globalSalesStatus" class="sales-pill" data-sales-status="loading">
+            <span class="sales-light"></span>
+            <span class="sales-text">Checking Sales</span>
+          </div>
+
+          <a class="nav-cta" href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">
+            Discord
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="showroom.html">Showroom</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Join Discord</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="admin-main">
+    <section class="admin-section">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+
+      <div id="adminGate" class="admin-shell reveal">
+        <div class="admin-card admin-lock-card">
+          <div class="admin-lock-mark">DMC</div>
+          <div class="admin-header center-text">
+            <div class="eyebrow">Secure Admin Window</div>
+            <h1>Restricted Access</h1>
+            <p>
+              Enter the private admin password to open the DarkMode Customs™ control panel.
+              Status controls stay hidden until access is unlocked.
+            </p>
+          </div>
+
+          <form id="adminGateForm" class="admin-lock-form" autocomplete="off">
+            <div class="field">
+              <label for="adminGatePassword">Admin Password</label>
+              <input
+                id="adminGatePassword"
+                name="adminGatePassword"
+                type="password"
+                placeholder="Enter admin password"
+                autocomplete="off"
+                required
+              />
+            </div>
+
+            <button class="btn btn-primary full" type="submit">
+              Open Secure Admin Panel
+            </button>
+
+            <div id="adminGateMessage" class="admin-message admin-lock-message" role="status"></div>
+          </form>
+
+          <div class="security-note">
+            <strong>Security Notice</strong>
+            <span>
+              Keep your Cloudflare Worker ADMIN_TOKEN active. The password hides this page from casual users;
+              the Worker token is what protects live updates.
+            </span>
+          </div>
+        </div>
+
+        <div class="admin-links">
+          <a href="index.html">Back to Website</a>
+          <a href="showroom.html">Open Showroom</a>
+          <a href="https://discord.gg/GWU7n5T6" target="_blank" rel="noopener">Open Discord</a>
+        </div>
+      </div>
+
+      <div id="adminSecureMount" class="admin-secure-mount" hidden></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

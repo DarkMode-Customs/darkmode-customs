@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "key": "online",
+  "emoji": "🟢",
+  "label": "Online",
+  "status": "🟢 Online",
+  "message": "DarkMode Customs™ is online and accepting orders.",
+  "salesStatus": "open",
+  "salesKey": "open",
+  "salesEmoji": "🟢",
+  "salesLabel": "Sales Open",
+  "salesStatusText": "🟢 Sales Open",
+  "salesMessage": "DarkMode Customs™ is accepting new orders. Submit the order form to start your build.",
+  "sales": {
+    "key": "open",
+    "emoji": "🟢",
+    "label": "Sales Open",
+    "status": "🟢 Sales Open",
+    "message": "DarkMode Customs™ is accepting new orders. Submit the order form to start your build."
+  },
+  "updatedAt": null,
+  "updatedBy": "System"
+}
